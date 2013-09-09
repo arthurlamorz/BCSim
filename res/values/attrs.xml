@@ -1,0 +1,6 @@
+<resources>
+    <declare-styleable name="CustomFontTextView">
+        <attr name="customFont" format="string"/>
+    </declare-styleable>
+</resources>
+
