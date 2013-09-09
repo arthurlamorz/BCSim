@@ -66,6 +66,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	     text_vEnd.setText("|-------+-----+------|");
 	     text_vEnd.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
 	     text_vEnd.setTypeface(f_typeface);
+	     tbrowEnd.addView(text_vEnd);
 	     f_tableLayoutResult.addView(tbrowEnd);
      }
 	
