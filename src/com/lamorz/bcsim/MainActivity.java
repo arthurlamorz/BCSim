@@ -14,6 +14,8 @@ import android.graphics.Typeface;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.lamorz.bcsim.BCHand;
+
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -47,11 +49,13 @@ public class MainActivity extends Activity implements OnClickListener {
 		 
 		 for (int i=0; i<5; i++)
 		 {
+			 BCHand hand = new BCHand();
+			 hand.play(i, 1);
 			 TableRow tbrow   = new TableRow(this);
 
 			 
 		      TextView text_v1 = new TextView(this);
-		      text_v1.setText("| " + (i+1) + "     | " + (f_ranGen.nextInt(2)==1?"W":"L") + "   |      |");
+		      text_v1.setText("| " + hand.getHandID() + "     | " + (hand.isWin()?"W":"L") + "   | " + hand.getGain() + "    |");
 		      text_v1.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
 		      text_v1.setTypeface(f_typeface);
 
