@@ -4,12 +4,13 @@ import com.lamorz.bcsim.BCBetTree;
 
 public class BCRound {
 
-	private final int GAMES_PER_ROUND = 4;
+	public static final int GAMES_PER_ROUND = 4;
 	private BCGame[] m_games;
 	
 	private int m_currentGame;
 	private int m_betLevel;
 	private int m_gainFromLastRound;
+	private int m_gainFromThisRound;
 	private BCBetTree m_betTree;
 	
 	public BCRound()
@@ -28,6 +29,7 @@ public class BCRound {
 		m_currentGame = 0;
 		m_betLevel = 1;
 		m_gainFromLastRound = gainFromLastRound;
+		m_gainFromThisRound = 0;
 	}
 	
 	public int playAllGames()
@@ -37,10 +39,10 @@ public class BCRound {
 			BCGame game = new BCGame(m_betLevel);
 			m_games[m_currentGame] = game;
 			
-			game.playAllHands();
+			m_gainFromThisRound += game.playAllHands();
 		}
 		
-		return m_currentGame;
+		return m_gainFromThisRound;
 	}
 
 	public BCGame getGame(int gameID)

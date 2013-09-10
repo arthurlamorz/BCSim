@@ -4,7 +4,7 @@ import com.lamorz.bcsim.BCBetTree;
 
 public class BCGame {
 	
-	private final int HANDS_PER_GAME = 5;
+	public static final int HANDS_PER_GAME = 5;
 	private BCHand[] m_hands;
 	private int m_currentHand;
 	private int m_betLevel;
@@ -54,7 +54,7 @@ public class BCGame {
 	public int playAllHands()
 	{
 		while (m_currentHand < HANDS_PER_GAME)
-			m_totalGain = playSingleHand().getGain();
+			m_totalGain += playSingleHand().getGain();
 		
 		return m_totalGain;
 	}
