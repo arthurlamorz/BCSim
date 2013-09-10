@@ -40,4 +40,9 @@ public class BCGame {
 		return m_currentHand;
 	}
 
+	public BCHand getHand(int handNo)
+	{
+		return m_hands[handNo];
+	}
+
 }
