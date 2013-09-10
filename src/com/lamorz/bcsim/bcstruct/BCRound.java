@@ -43,6 +43,14 @@ public class BCRound {
 		return m_currentGame;
 	}
 
+	public BCGame getGame(int gameID)
+	{
+		if (gameID >= GAMES_PER_ROUND)
+			return null;
+		
+		return m_games[gameID];
+	}
+	
 	public BCGame playSingleGame()
 	{
 		if (m_currentGame == GAMES_PER_ROUND)
