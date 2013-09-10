@@ -17,6 +17,7 @@ import android.view.View.OnClickListener;
 
 import com.lamorz.bcsim.bcstruct.BCHand;
 import com.lamorz.bcsim.bcstruct.BCGame;
+import com.lamorz.bcsim.bcstruct.BCRound;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -46,31 +47,37 @@ public class MainActivity extends Activity implements OnClickListener {
 	 @Override
      public void onClick(View view)  {
 		 
-		BCGame game = new BCGame();
-		int noOfHands = game.playAllHands();
-		
-		for (int i=0; i<noOfHands; i++)
-		{
-			 TableRow tbrow   = new TableRow(this);
-			 BCHand hand = game.getHand(i);
-		     TextView text_v1 = new TextView(this);
-		     text_v1.setText("| " + hand.getHandID() + "     | " + (hand.isWin()?"W":"L") + "   | " + String.format("%1$3d", hand.getGain()) + "  |");
-		     text_v1.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
-		     text_v1.setTypeface(f_typeface);
-
-		     tbrow.addView(text_v1);
-
-		     f_tableLayoutResult.addView(tbrow);
-		 }
+		 BCRound round = new BCRound();
+		 int gain = round.playAllGames();
 		 
-		 TableRow tbrowEnd = new TableRow(this);
-		 TextView text_vEnd = new TextView(this);
-	     text_vEnd.setText("|-------+-----+------|");
-	     text_vEnd.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
-	     text_vEnd.setTypeface(f_typeface);
-	     tbrowEnd.addView(text_vEnd);
-	     f_tableLayoutResult.addView(tbrowEnd);
-     }
+		 for (int gameID=0; gameID < BCRound.GAMES_PER_ROUND; gameID++)
+		 {
+		 
+			 BCGame game = round.getGame(gameID);
+		
+			 for (int i=0; i<BCGame.HANDS_PER_GAME; i++)
+			 {
+				 TableRow tbrow   = new TableRow(this);
+				 BCHand hand = game.getHand(i);
+				 TextView text_v1 = new TextView(this);
+				 text_v1.setText("| " + hand.getHandID() + "     | " + (hand.isWin()?"W":"L") + "   | " + String.format("%1$3d", hand.getGain()) + "  |");
+				 text_v1.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
+				 text_v1.setTypeface(f_typeface);
+
+				 tbrow.addView(text_v1);
+
+				 f_tableLayoutResult.addView(tbrow);
+			 }
+		 
+			 TableRow tbrowEnd = new TableRow(this);
+			 TextView text_vEnd = new TextView(this);
+			 text_vEnd.setText("|-------+-----+------|\n| " + gain);
+			 text_vEnd.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
+			 text_vEnd.setTypeface(f_typeface);
+			 tbrowEnd.addView(text_vEnd);
+			 f_tableLayoutResult.addView(tbrowEnd);
+		 }
+	}
 	
 	public Typeface getTypeface() {return f_typeface;}
 	
