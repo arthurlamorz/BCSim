@@ -55,7 +55,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 			 
 		      TextView text_v1 = new TextView(this);
-		      text_v1.setText("| " + hand.getHandID() + "     | " + (hand.isWin()?"W":"L") + "   | " + hand.getGain() + "    |");
+		      text_v1.setText("| " + hand.getHandID() + "     | " + (hand.isWin()?"W":"L") + "   | " + String.format("%1$3d", hand.getGain()) + "  |");
 		      text_v1.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
 		      text_v1.setTypeface(f_typeface);
 
