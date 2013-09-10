@@ -43,12 +43,21 @@
         android:textColor="#0f0"
         android:textSize="20sp" />
 
-    <TableLayout
-        android:id="@+id/tableLayoutResult"
+    <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2" >
-    </TableLayout>
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_marginTop="40sp" >
+
+        <TableLayout
+            android:id="@+id/tableLayoutResult"
+            android:layout_width="match_parent"
+            android:layout_height="352dp" >
+        </TableLayout>
+
+    </ScrollView>
 
 </RelativeLayout>
