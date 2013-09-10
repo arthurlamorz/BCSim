@@ -15,6 +15,8 @@ import android.graphics.Typeface;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.lamorz.bcsim.bcstruct.BCHand;
+import com.lamorz.bcsim.bcstruct.BCGame;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -44,22 +46,21 @@ public class MainActivity extends Activity implements OnClickListener {
 	 @Override
      public void onClick(View view)  {
 		 
-		 for (int i=0; i<5; i++)
-		 {
-			 BCHand hand = new BCHand();
-			 hand.play(i, 1);
+		BCGame game = new BCGame();
+		int noOfHands = game.playAllHands();
+		
+		for (int i=0; i<noOfHands; i++)
+		{
 			 TableRow tbrow   = new TableRow(this);
+			 BCHand hand = game.getHand(i);
+		     TextView text_v1 = new TextView(this);
+		     text_v1.setText("| " + hand.getHandID() + "     | " + (hand.isWin()?"W":"L") + "   | " + String.format("%1$3d", hand.getGain()) + "  |");
+		     text_v1.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
+		     text_v1.setTypeface(f_typeface);
 
-			 
-		      TextView text_v1 = new TextView(this);
-		      text_v1.setText("| " + hand.getHandID() + "     | " + (hand.isWin()?"W":"L") + "   | " + String.format("%1$3d", hand.getGain()) + "  |");
-		      text_v1.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
-		      text_v1.setTypeface(f_typeface);
+		     tbrow.addView(text_v1);
 
-		      tbrow.addView(text_v1);
-		     
-
-		      f_tableLayoutResult.addView(tbrow);
+		     f_tableLayoutResult.addView(tbrow);
 		 }
 		 
 		 TableRow tbrowEnd = new TableRow(this);
