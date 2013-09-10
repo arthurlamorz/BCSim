@@ -1,6 +1,7 @@
 package com.lamorz.bcsim;
 
-import java.util.Random;
+
+import com.lamorz.bcsim.bcstruct.BCHand;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -14,22 +15,18 @@ import android.graphics.Typeface;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import com.lamorz.bcsim.BCHand;
-
 
 public class MainActivity extends Activity implements OnClickListener {
 
 	private Typeface f_typeface;
 	private Button f_buttonStart;
 	private TableLayout f_tableLayoutResult;
-	private Random f_ranGen;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		f_typeface = Typeface.createFromAsset(getAssets(), "fonts/FSEX300.ttf");
-		f_ranGen = new Random();
 		
 		f_buttonStart = (Button) findViewById(R.id.buttonStart);
 		f_buttonStart.setOnClickListener(this);
