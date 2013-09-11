@@ -22,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.lamorz.bcsim.InputOddsActivity"
+            android:label="@string/title_activity_input_odds" >
+        </activity>
     </application>
 
 </manifest>

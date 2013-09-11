@@ -15,6 +15,8 @@ import android.graphics.Typeface;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import android.content.Intent;
+
 import com.lamorz.bcsim.bcstruct.BCHand;
 import com.lamorz.bcsim.bcstruct.BCGame;
 import com.lamorz.bcsim.bcstruct.BCRound;
@@ -23,6 +25,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private Typeface f_typeface;
 	private Button f_buttonStart;
+	private Button f_buttonOdds;
 	private TableLayout f_tableLayoutResult;
 	
 	@Override
@@ -33,6 +36,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		f_buttonStart = (Button) findViewById(R.id.buttonStart);
 		f_buttonStart.setOnClickListener(this);
+		
+		f_buttonOdds = (Button) findViewById(R.id.buttonOdds);
+		f_buttonOdds.setOnClickListener(this);
 		
 		f_tableLayoutResult = (TableLayout) findViewById(R.id.tableLayoutResult);
 	}	
@@ -47,35 +53,44 @@ public class MainActivity extends Activity implements OnClickListener {
 	 @Override
      public void onClick(View view)  {
 		 
-		 BCRound round = new BCRound();
-		 int gain = round.playAllGames();
-		 
-		 for (int gameID=0; gameID < BCRound.GAMES_PER_ROUND; gameID++)
+		 if (view == f_buttonStart)
 		 {
+			 BCRound round = new BCRound();
+			 int gain = round.playAllGames();
 		 
-			 BCGame game = round.getGame(gameID);
-		
-			 for (int i=0; i<BCGame.HANDS_PER_GAME; i++)
+			 for (int gameID=0; gameID < BCRound.GAMES_PER_ROUND; gameID++)
 			 {
-				 TableRow tbrow   = new TableRow(this);
-				 BCHand hand = game.getHand(i);
-				 TextView text_v1 = new TextView(this);
-				 text_v1.setText("| " + hand.getHandID() + "     | " + (hand.isWin()?"W":"L") + "   | " + String.format("%1$3d", hand.getGain()) + "  |");
-				 text_v1.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
-				 text_v1.setTypeface(f_typeface);
-
-				 tbrow.addView(text_v1);
-
-				 f_tableLayoutResult.addView(tbrow);
-			 }
 		 
-			 TableRow tbrowEnd = new TableRow(this);
-			 TextView text_vEnd = new TextView(this);
-			 text_vEnd.setText("|-------+-----+------|\n| " + gain);
-			 text_vEnd.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
-			 text_vEnd.setTypeface(f_typeface);
-			 tbrowEnd.addView(text_vEnd);
-			 f_tableLayoutResult.addView(tbrowEnd);
+				 BCGame game = round.getGame(gameID);
+		
+				 for (int i=0; i<BCGame.HANDS_PER_GAME; i++)
+				 {
+					 TableRow tbrow   = new TableRow(this);
+					 BCHand hand = game.getHand(i);
+					 TextView text_v1 = new TextView(this);
+					 text_v1.setText("| " + hand.getHandID() + "     | " + (hand.isWin()?"W":"L") + "   | " + String.format("%1$3d", hand.getGain()) + "  |");
+					 text_v1.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
+					 text_v1.setTypeface(f_typeface);
+
+					 tbrow.addView(text_v1);
+
+					 f_tableLayoutResult.addView(tbrow);
+				 }
+		 
+				 TableRow tbrowEnd = new TableRow(this);
+				 TextView text_vEnd = new TextView(this);
+				 text_vEnd.setText("|-------+-----+------|\n| " + gain);
+				 text_vEnd.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
+				 text_vEnd.setTypeface(f_typeface);
+				 tbrowEnd.addView(text_vEnd);
+				 f_tableLayoutResult.addView(tbrowEnd);
+			 }
+		 }
+		 else if (view == f_buttonOdds)
+		 {
+			 Intent intentApp = new Intent(MainActivity.this, InputOddsActivity.class);
+
+			 MainActivity.this.startActivity(intentApp);
 		 }
 	}
 	
