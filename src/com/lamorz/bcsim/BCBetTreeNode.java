@@ -6,27 +6,39 @@ public class BCBetTreeNode {
 	private BCBetTreeNode m_loseNode;
 	private int m_amount;
 	private int m_totalAmount;
+	private int m_layer;
 	
+	public int getLayer() {
+		return m_layer;
+	}
+
+	public void setLayer(int layer) {
+		m_layer = layer;
+	}
+
 	public BCBetTreeNode() {
 		super();
 		m_winNode = null;
 		m_loseNode = null;
 		m_amount = 0;
 		m_totalAmount = 0;
+		m_layer = 0;
 	}
 	
 	public BCBetTreeNode(BCBetTreeNode winNode, BCBetTreeNode loseNode) {
 		super();
 		m_winNode = winNode;
 		m_loseNode = loseNode;
+		m_layer = 0;
 	}
 	public BCBetTreeNode(BCBetTreeNode winNode, BCBetTreeNode loseNode,
-			int amount) {
+			int amount, int layer) {
 		super();
 		m_winNode = winNode;
 		m_loseNode = loseNode;
 		m_amount = amount;
 		m_totalAmount = 0;
+		m_layer = layer;
 	}
 	// Generated getsetters
 	/**

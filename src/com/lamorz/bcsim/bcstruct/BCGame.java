@@ -9,7 +9,6 @@ public class BCGame {
 	private int m_currentHand;
 	private int m_betLevel;
 	private int m_totalGain;
-	private BCBetTree m_betTree;
 	
 	public BCGame()
 	{
@@ -26,7 +25,6 @@ public class BCGame {
 		m_hands = new BCHand[HANDS_PER_GAME];	
 		m_currentHand = 0;
 		m_betLevel = betLevel;
-		m_betTree = new BCBetTree(); 
 	}
 	
 	public int getBetLevel() {
