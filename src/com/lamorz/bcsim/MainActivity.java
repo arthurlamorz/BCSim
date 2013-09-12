@@ -79,7 +79,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		 
 				 TableRow tbrowEnd = new TableRow(this);
 				 TextView text_vEnd = new TextView(this);
-				 text_vEnd.setText("|-------+-----+------|\n| " + gain);
+				 text_vEnd.setText("|-------+-----+------| " + gain);
 				 text_vEnd.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
 				 text_vEnd.setTypeface(f_typeface);
 				 tbrowEnd.addView(text_vEnd);

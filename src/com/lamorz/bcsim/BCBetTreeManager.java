@@ -8,6 +8,7 @@ public class BCBetTreeManager {
 	public BCBetTreeManager()
 	{
 		m_betTrees = new BCBetTree[TOTAL_BET_LEVELS];
+		
 	}
 	
 }
