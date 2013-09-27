@@ -9,6 +9,11 @@ public class BCBetTreeManager {
 	{
 		m_betTrees = new BCBetTree[TOTAL_BET_LEVELS];
 		
+		for (int i=0; i<TOTAL_BET_LEVELS; i++)
+		{
+			
+		}
+		
 	}
 	
 }
