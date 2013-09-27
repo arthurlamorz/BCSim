@@ -21,6 +21,8 @@ import com.lamorz.bcsim.bcstruct.BCHand;
 import com.lamorz.bcsim.bcstruct.BCGame;
 import com.lamorz.bcsim.bcstruct.BCRound;
 
+import com.google.gson.Gson;
+
 public class MainActivity extends Activity implements OnClickListener {
 
 	private Typeface f_typeface;
@@ -79,12 +81,17 @@ public class MainActivity extends Activity implements OnClickListener {
 		 
 				 TableRow tbrowEnd = new TableRow(this);
 				 TextView text_vEnd = new TextView(this);
-				 text_vEnd.setText("|-------+-----+------| " + gain);
+				 
+				 Gson gson = new Gson();
+				 String json = gson.toJson(round);
+				 
+				 text_vEnd.setText("|-------+-----+------| " + gain + "\n" + json + "\n");
 				 text_vEnd.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
 				 text_vEnd.setTypeface(f_typeface);
 				 tbrowEnd.addView(text_vEnd);
 				 f_tableLayoutResult.addView(tbrowEnd);
 			 }
+			 
 		 }
 		 else if (view == f_buttonOdds)
 		 {
