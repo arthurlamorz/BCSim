@@ -1,4 +1,4 @@
-package com.lamorz.bcsim;
+package com.lamorz.bcsim.bcstruct;
 
 public class BCBetTreeNode {
 	

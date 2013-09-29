@@ -1,6 +1,5 @@
 package com.lamorz.bcsim.bcstruct;
 
-import com.lamorz.bcsim.BCBetTree;
 
 public class BCRound {
 

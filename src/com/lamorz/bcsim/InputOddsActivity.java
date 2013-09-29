@@ -1,5 +1,8 @@
 package com.lamorz.bcsim;
 
+import com.lamorz.bcsim.bcstruct.BCBetTree;
+import com.lamorz.bcsim.bcstruct.BCBetTreeManager;
+import com.lamorz.bcsim.bcstruct.BCBetTreeNode;
 import com.lamorz.bcsim.bcstruct.BCHand;
 
 import android.os.Bundle;
