@@ -29,4 +29,12 @@ public class BCBetTree {
 		node.setLoseNode(loseNode);
 	}
 
+	public BCBetTreeNode getRootNode() {
+		return m_rootNode;
+	}
+
+	public void setRootNode(BCBetTreeNode rootNode) {
+		m_rootNode = rootNode;
+	}
+
 }

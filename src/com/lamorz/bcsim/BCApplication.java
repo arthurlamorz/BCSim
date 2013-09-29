@@ -4,7 +4,11 @@ import android.app.Application;
 
 public class BCApplication extends Application {
 	
-	private BCBetTreeManager g_betTreeManager;
-	
+		
+	public void onCreate() {
+	   
+		BCLayoutManager.getInstance(getApplicationContext());
+	   
+	}
 	
 }

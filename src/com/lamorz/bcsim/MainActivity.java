@@ -34,7 +34,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		f_typeface = Typeface.createFromAsset(getAssets(), "fonts/FSEX300.ttf");
+		f_typeface = BCLayoutManager.getInstance().getTypeface();
 		
 		f_buttonStart = (Button) findViewById(R.id.buttonStart);
 		f_buttonStart.setOnClickListener(this);
