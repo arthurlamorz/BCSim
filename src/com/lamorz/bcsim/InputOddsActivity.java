@@ -55,25 +55,9 @@ public class InputOddsActivity extends Activity {
 		if (betTreeNode == null) 
 			return;
 		
-		TableRow tbrow   = new TableRow(this);
+		BCBetTreeTableRow tbrow   = new BCBetTreeTableRow(this, betTreeNode, prevResult);
 		 
-		 TextView textView = new TextView(this);
-		 EditText textEditBet = new EditText(this);
 		 
-		 String layerText = "|";
-		 for (int i=0; i<betTreeNode.getLayer(); i++)
-			 layerText += "--";
-		 layerText += " " + prevResult;
-		 textView.setText(layerText);
-		 textView.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
-		 textView.setTypeface(f_typeface);
-		 
-		 textEditBet.setText(String.valueOf(betTreeNode.getAmount()));
-		 textEditBet.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
-		 textEditBet.setTypeface(f_typeface);
-		 
-		 tbrow.addView(textView);
-		 tbrow.addView(textEditBet);
 		 f_tableLayout.addView(tbrow);
 		 
 		 createNodeUI(betTreeNode.getWinNode(), prevResult + "W");
