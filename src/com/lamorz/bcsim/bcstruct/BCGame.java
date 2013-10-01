@@ -66,6 +66,14 @@ public class BCGame {
 		return m_totalGain;
 	}
 
+	public int getTotalGain() {
+		return m_totalGain;
+	}
+
+	public void setTotalGain(int totalGain) {
+		m_totalGain = totalGain;
+	}
+
 	public BCHand getHand(int handID)
 	{
 		if (handID >= HANDS_PER_GAME)
