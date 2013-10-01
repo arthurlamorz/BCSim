@@ -29,6 +29,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Button f_buttonStart;
 	private Button f_buttonOdds;
 	private TableLayout f_tableLayoutResult;
+	private int m_totalAmount;
+	private int m_currentRound;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		f_buttonOdds.setOnClickListener(this);
 		
 		f_tableLayoutResult = (TableLayout) findViewById(R.id.tableLayoutResult);
+		
+		m_totalAmount = 0;
+		m_currentRound = 0;
 	}	
 
 	@Override
@@ -70,7 +75,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					 TableRow tbrow   = new TableRow(this);
 					 BCHand hand = game.getHand(i);
 					 TextView text_v1 = new TextView(this);
-					 text_v1.setText("| " + hand.getHandID() + "     | " + (hand.isWin()?"W":"L") + "   | " + String.format("%1$3d", hand.getGain()) + "  |");
+					 text_v1.setText("|" + String.format("%1$3d", m_currentRound) + "-" + gameID + "-" + hand.getHandID() + "| " + (hand.isWin()?"W":"L") + "   | " + String.format("%1$3d", hand.getGain()) + "  |");
 					 text_v1.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
 					 text_v1.setTypeface(f_typeface);
 
@@ -85,12 +90,14 @@ public class MainActivity extends Activity implements OnClickListener {
 				 Gson gson = new Gson();
 				 String json = gson.toJson(round);
 				 
-				 text_vEnd.setText("|-------+-----+------| " + gain + "\n" + json + "\n");
+				 m_totalAmount += game.getTotalGain(); 
+				 text_vEnd.setText("|-------+-----+------|\n|Gain" + String.format("%1$3d", game.getTotalGain()) + "|Amount:" + String.format("%1$5d", m_totalAmount) + "|\n|-------+-----+------|");
 				 text_vEnd.setTextAppearance(getApplicationContext(), R.style.btnStyleRetro);
 				 text_vEnd.setTypeface(f_typeface);
 				 tbrowEnd.addView(text_vEnd);
 				 f_tableLayoutResult.addView(tbrowEnd);
 			 }
+			 m_currentRound++;
 			 
 		 }
 		 else if (view == f_buttonOdds)
