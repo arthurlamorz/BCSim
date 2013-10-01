@@ -24,4 +24,13 @@
 
     </ScrollView>
 
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/mainScrollView"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="14dp"
+        android:text="Save" />
+
 </RelativeLayout>

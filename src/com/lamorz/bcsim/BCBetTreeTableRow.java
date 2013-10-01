@@ -5,14 +5,19 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.EditText;
 import com.lamorz.bcsim.bcstruct.BCBetTreeNode;
-import android.graphics.Typeface;
 
-public class BCBetTreeTableRow extends TableRow {
+import android.graphics.Typeface;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.InputType;
+
+public class BCBetTreeTableRow extends TableRow implements TextWatcher {
 
 	private TextView m_textView;
 	private EditText m_editAmount;
 	private BCBetTreeNode m_betTreeNode;
 	private Typeface m_typeface;
+	
 	private String m_prevResult;
 	
 	public BCBetTreeTableRow(Context ctx)
@@ -63,12 +68,63 @@ public class BCBetTreeTableRow extends TableRow {
 		m_prevResult = prevResult;
 	}
 
+	
+	@Override
+	public void afterTextChanged(Editable s) {
+		// TODO Auto-generated method stub
+		
+		final StringBuilder sb = new StringBuilder(s.length());
+		sb.append(s);
+		String amountStr = sb.toString();
+		
+		int amount = 0;
+		try { 
+	        amount = Integer.parseInt(amountStr); 
+	    } catch(NumberFormatException e) { 
+	        return; 
+	    }
+		
+		m_betTreeNode.setAmount(amount);
+		InputOddsActivity activity = (InputOddsActivity) this.getContext();
+		BCBetTreeTableRow conjugateRow = activity.getConjugateRow(m_prevResult);
+		
+		if (conjugateRow != null)
+		{
+			String conjugateAmountStr = conjugateRow.getEditAmount().getText().toString();
+			try { 
+		        if(Integer.parseInt(conjugateAmountStr) != -amount)
+		        {
+		        	conjugateRow.getBetTreeNode().setAmount(-amount);
+		        	conjugateRow.getEditAmount().setText(Integer.toString(-amount));
+		        }
+		    } catch(NumberFormatException e) { 
+		        return; 
+		    }	
+		}
+	}
+
+	@Override
+	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+			int arg3) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTextChanged(CharSequence s, int start, int before, int count) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+	
 	private void initUI(Context ctx)
 	{
 		m_typeface = BCLayoutManager.getInstance().getTypeface();
 		m_textView = new TextView(ctx);
 		
 		m_editAmount = new EditText(ctx);
+		m_editAmount.setInputType(InputType.TYPE_CLASS_NUMBER);
+		m_editAmount.addTextChangedListener(this);
 		
 		this.addView(m_textView);
 		this.addView(m_editAmount);
