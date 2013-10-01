@@ -40,9 +40,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		f_buttonStart = (Button) findViewById(R.id.buttonStart);
 		f_buttonStart.setOnClickListener(this);
+		f_buttonStart.setTypeface(f_typeface);
 		
 		f_buttonOdds = (Button) findViewById(R.id.buttonOdds);
 		f_buttonOdds.setOnClickListener(this);
+		f_buttonOdds.setTypeface(f_typeface);
 		
 		f_tableLayoutResult = (TableLayout) findViewById(R.id.tableLayoutResult);
 		

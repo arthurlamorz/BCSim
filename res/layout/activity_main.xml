@@ -17,7 +17,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="| ROUND | W/L | GAIN |"
-        android:textColor="#0f0"
+        android:textColor="#fff"
         android:textSize="20sp"
         lamorz:customFont="fonts/FSEX300.ttf" />
 
@@ -28,19 +28,20 @@
         android:layout_alignRight="@+id/textView1"
         android:layout_below="@+id/textView1"
         android:text="|-------+-----+------|"
-        android:textColor="#0f0"
+        android:textColor="#fff"
         android:textSize="20sp"
         lamorz:customFont="fonts/FSEX300.ttf" />
 
     <Button
         android:id="@+id/buttonStart"
-        style="@style/btnStyleRetro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100sp"
+        android:layout_height="20sp"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/textView1"
-        android:text="Button"
-        android:textColor="#0f0"
+        android:text="START"
+        android:textColor="#fff"
+        android:background="#00f"
+        android:height="20sp"
         android:textSize="20sp" />
 
     <ScrollView
@@ -62,11 +63,15 @@
 
     <Button
         android:id="@+id/buttonOdds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100sp"
+        android:layout_height="20sp"
         android:layout_alignLeft="@+id/buttonStart"
         android:layout_below="@+id/buttonStart"
         android:layout_marginTop="19dp"
-        android:text="Button" />
+        android:textColor="#fff"
+        android:background="#f00"
+        android:text="TREE" 
+        android:height="20sp"
+        android:textSize="20sp"/>
 
 </RelativeLayout>
