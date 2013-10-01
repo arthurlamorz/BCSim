@@ -8,10 +8,11 @@ public class BCGame {
 	private int m_currentHand;
 	private int m_betLevel;
 	private int m_totalGain;
+	private BCBetTreeNode m_currentBetTreeNode;
 	
 	public BCGame()
 	{
-		init(1);
+		init(0);
 	}
 	
 	public BCGame(int betLevel)
@@ -24,6 +25,8 @@ public class BCGame {
 		m_hands = new BCHand[HANDS_PER_GAME];	
 		m_currentHand = 0;
 		m_betLevel = betLevel;
+		
+		m_currentBetTreeNode = BCBetTreeManager.getInstance().getBetTree(m_betLevel).getRootNode();
 	}
 	
 	public int getBetLevel() {
@@ -37,10 +40,17 @@ public class BCGame {
 	public BCHand playSingleHand()
 	{
 		if (m_currentHand == HANDS_PER_GAME)
+		{
+			m_currentBetTreeNode = null;
 			return null;
-		
+		}
 		BCHand hand = new BCHand();
-		hand.play(m_currentHand, m_betLevel);
+		hand.play(m_currentHand, m_currentBetTreeNode.getWinNode().getAmount());
+		
+		if(hand.isWin())
+			m_currentBetTreeNode = m_currentBetTreeNode.getWinNode();
+		else
+			m_currentBetTreeNode = m_currentBetTreeNode.getLoseNode();
 		
 		m_hands[m_currentHand] = hand;
 		m_currentHand++;

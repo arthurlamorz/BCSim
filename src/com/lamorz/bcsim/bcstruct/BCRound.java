@@ -27,7 +27,7 @@ public class BCRound {
 		m_betTree = new BCBetTree();
 		m_games = new BCGame[GAMES_PER_ROUND];
 		m_currentGame = 0;
-		m_betLevel = 1;
+		m_betLevel = 0;
 		m_gainFromLastRound = gainFromLastRound;
 		m_gainFromThisRound = 0;
 	}
