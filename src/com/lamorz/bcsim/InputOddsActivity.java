@@ -53,19 +53,7 @@ public class InputOddsActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		Gson gson = new Gson();
-		String json = gson.toJson(BCBetTreeManager.getInstance().getBetTree(0));
-		
-		try {
-			 
-			FileWriter file = new FileWriter(Environment.getExternalStorageDirectory().toString() + "//betTree0.json", false);
-			file.write(json);
-			file.flush();
-			file.close();
-	 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		BCBetTreeManager.getInstance().saveBetTree(0);
 	}
 
 	public void createTreeUI()
