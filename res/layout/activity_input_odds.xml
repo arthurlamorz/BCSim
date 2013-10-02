@@ -27,9 +27,9 @@
     <Button
         android:id="@+id/buttonSave"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/mainScrollView"
+        android:layout_height="20dp"
         android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/mainScrollView"
         android:layout_marginRight="14dp"
         android:text="Save" />
 

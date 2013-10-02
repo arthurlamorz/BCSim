@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.InputType;
+import android.view.Gravity;
 
 public class BCBetTreeTableRow extends TableRow implements TextWatcher {
 
@@ -123,7 +124,7 @@ public class BCBetTreeTableRow extends TableRow implements TextWatcher {
 		m_textView = new TextView(ctx);
 		
 		m_editAmount = new EditText(ctx);
-		m_editAmount.setInputType(InputType.TYPE_CLASS_NUMBER);
+		m_editAmount.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED);
 		m_editAmount.addTextChangedListener(this);
 		
 		this.addView(m_textView);
@@ -141,7 +142,11 @@ public class BCBetTreeTableRow extends TableRow implements TextWatcher {
 		 m_textView.setTypeface(m_typeface);
 		 
 		 m_editAmount.setText(String.valueOf(m_betTreeNode.getAmount()));
-		 m_editAmount.setTextAppearance(this.getContext(), R.style.btnStyleRetro);
+		 m_editAmount.setTextAppearance(this.getContext(), R.style.textStyleRetro);
+		 int height = Math.round(m_editAmount.getTextSize());
+		 m_editAmount.setHeight(height*2);
+		 m_editAmount.setGravity(Gravity.BOTTOM);
+		 m_editAmount.setBackgroundColor(0);
 		 m_editAmount.setTypeface(m_typeface);
 		
 	}
