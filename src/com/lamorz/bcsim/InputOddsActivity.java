@@ -31,6 +31,8 @@ public class InputOddsActivity extends Activity implements OnClickListener {
 	private Typeface f_typeface;
 	private Map<String, BCBetTreeTableRow> m_tableRowMap;
 	
+	private Button[] m_levelButtons;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,8 +46,18 @@ public class InputOddsActivity extends Activity implements OnClickListener {
 		f_buttonSave.setTypeface(f_typeface);
 		f_buttonSave.setOnClickListener(this);
 		
+		m_levelButtons = new Button[BCBetTreeManager.TOTAL_BET_LEVELS];
 		
-		m_tableRowMap = new HashMap<String, BCBetTreeTableRow>();
+		String resIdStr = "";
+		int resId = -1;
+		for (int i=0; i<BCBetTreeManager.TOTAL_BET_LEVELS; i++)
+		{
+			resIdStr = "Button0" + (i+1);
+			resId = BCLayoutManager.getResId(resIdStr, "id");
+			m_levelButtons[i] = (Button)findViewById(resId);
+			m_levelButtons[i].setTypeface(f_typeface);
+			m_levelButtons[i].setOnClickListener(this);
+		}
 		
 		createTreeUI();
 	}
@@ -60,13 +72,28 @@ public class InputOddsActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		BCBetTreeManager.getInstance().saveBetTree(0);
+		if (v == f_buttonSave)
+			BCBetTreeManager.getInstance().saveBetTree(m_betLevel);
+		else
+		{
+			for (int i=0; i<BCBetTreeManager.TOTAL_BET_LEVELS; i++)
+			{
+				if (v == m_levelButtons[i])
+				{
+					m_betLevel = i;
+					createTreeUI();
+				}
+			}
+		}
 	}
 
 	public void createTreeUI()
 	{
 		BCBetTreeManager betTreeMgr = BCBetTreeManager.getInstance();
 		BCBetTree betTree = betTreeMgr.getBetTree(m_betLevel);
+		
+		m_tableRowMap = new HashMap<String, BCBetTreeTableRow>();
+		f_tableLayout.removeAllViews();
 		
 		createNodeUI(betTree.getRootNode(), "");
 		
@@ -76,8 +103,8 @@ public class InputOddsActivity extends Activity implements OnClickListener {
 	{
 		if (betTreeNode == null) 
 			return;
-		
-		BCBetTreeTableRow tbrow   = new BCBetTreeTableRow(this, betTreeNode, prevResult);
+		int styleId = BCLayoutManager.getResId("textStyle0" + (m_betLevel+1), "style");
+		BCBetTreeTableRow tbrow   = new BCBetTreeTableRow(this, betTreeNode, prevResult, styleId);
 		 
 		 m_tableRowMap.put(prevResult, tbrow);
 		 f_tableLayout.addView(tbrow);

@@ -34,5 +34,44 @@
        <item name="android:background">#f00</item>
        <item name="android:padding">10dip</item>
    </style>
+   
+    <style name="textStyle01">
+       <item name="android:textSize">20sp</item>
+       <item name="android:textColor">#fff</item>
+   </style>
     
+    <style name="textStyle02">
+       <item name="android:textSize">20sp</item>
+       <item name="android:textColor">#ff0</item>
+   </style>
+   
+    <style name="textStyle03">
+       <item name="android:textSize">20sp</item>
+       <item name="android:textColor">#0f0</item>
+   </style>
+   
+   <style name="textStyle04">
+       <item name="android:textSize">20sp</item>
+       <item name="android:textColor">#800</item>
+   </style>
+   
+   <style name="textStyle05">
+       <item name="android:textSize">20sp</item>
+       <item name="android:textColor">#00f</item>
+   </style>
+    
+   <style name="textStyle06">
+       <item name="android:textSize">20sp</item>
+       <item name="android:textColor">#f0f</item>
+   </style>
+   
+   <style name="textStyle07">
+       <item name="android:textSize">20sp</item>
+       <item name="android:textColor">#888</item>
+   </style>
+   
+   <style name="textStyle08">
+       <item name="android:textSize">20sp</item>
+       <item name="android:textColor">#f00</item>
+   </style>
 </resources>

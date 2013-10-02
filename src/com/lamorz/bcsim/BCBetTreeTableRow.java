@@ -18,6 +18,7 @@ public class BCBetTreeTableRow extends TableRow implements TextWatcher {
 	private EditText m_editAmount;
 	private BCBetTreeNode m_betTreeNode;
 	private Typeface m_typeface;
+	private int m_styleId;
 	
 	private String m_prevResult;
 	
@@ -27,13 +28,14 @@ public class BCBetTreeTableRow extends TableRow implements TextWatcher {
 		initUI(ctx);		
 	}
 	
-	public BCBetTreeTableRow(Context ctx, BCBetTreeNode betTreeNode, String prevResult)
+	public BCBetTreeTableRow(Context ctx, BCBetTreeNode betTreeNode, String prevResult, int styleId)
 	{
 		super(ctx);
 		
 		initUI(ctx);
 		m_betTreeNode = betTreeNode;
 		m_prevResult = prevResult;
+		m_styleId = styleId;
 		constructRow();
 	}
 	
@@ -138,11 +140,11 @@ public class BCBetTreeTableRow extends TableRow implements TextWatcher {
 			 layerText += "--";
 		 layerText += " " + m_prevResult;
 		 m_textView.setText(layerText);
-		 m_textView.setTextAppearance(this.getContext(), R.style.btnStyleRetro);
+		 m_textView.setTextAppearance(this.getContext(), m_styleId);
 		 m_textView.setTypeface(m_typeface);
 		 
 		 m_editAmount.setText(String.valueOf(m_betTreeNode.getAmount()));
-		 m_editAmount.setTextAppearance(this.getContext(), R.style.textStyleRetro);
+		 m_editAmount.setTextAppearance(this.getContext(), m_styleId);
 		 int height = Math.round(m_editAmount.getTextSize());
 		 m_editAmount.setHeight(height*2);
 		 m_editAmount.setGravity(Gravity.BOTTOM);
