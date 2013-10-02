@@ -30,7 +30,10 @@
         android:layout_height="20dp"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/mainScrollView"
-        android:layout_marginRight="14dp"
-        android:text="Save" />
+        android:text="Save"
+        android:textColor="#000"
+        android:background="#fff"
+        android:textSize="20sp"
+        android:width="100sp" />
 
 </RelativeLayout>

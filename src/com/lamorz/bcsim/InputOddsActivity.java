@@ -20,6 +20,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.ScrollView;
+import android.graphics.Typeface;
 
 public class InputOddsActivity extends Activity implements OnClickListener {
 
@@ -27,6 +28,7 @@ public class InputOddsActivity extends Activity implements OnClickListener {
 	private ScrollView f_scrollView;
 	private TableLayout f_tableLayout;
 	private Button f_buttonSave;
+	private Typeface f_typeface;
 	private Map<String, BCBetTreeTableRow> m_tableRowMap;
 	
 	@Override
@@ -36,8 +38,13 @@ public class InputOddsActivity extends Activity implements OnClickListener {
 		m_betLevel = 0;
 		f_scrollView = (ScrollView) findViewById(R.id.mainScrollView);
 		f_tableLayout = (TableLayout) findViewById(R.id.mainTableLayout);
+		f_typeface = BCLayoutManager.getInstance().getTypeface();
+		
 		f_buttonSave = (Button)findViewById(R.id.buttonSave);
+		f_buttonSave.setTypeface(f_typeface);
 		f_buttonSave.setOnClickListener(this);
+		
+		
 		m_tableRowMap = new HashMap<String, BCBetTreeTableRow>();
 		
 		createTreeUI();
