@@ -1,21 +1,17 @@
 package com.lamorz.bcsim.bcstruct;
 
-import java.util.Map;
-import java.util.HashMap;
-
-import com.lamorz.bcsim.BCLayoutManager;
-
+import android.util.SparseArray;
 
 public class BCManager {
 
-	private Map<Integer, BCRound> m_rounds;
+	private SparseArray<BCRound> m_rounds;
 	private int m_currentRound;
 	
 	private static BCManager m_instance= null;
 	
 	public BCManager()
 	{
-		m_rounds = new HashMap<Integer, BCRound>();
+		m_rounds = new SparseArray<BCRound>();
 		m_currentRound = 0;
 	}
 	
