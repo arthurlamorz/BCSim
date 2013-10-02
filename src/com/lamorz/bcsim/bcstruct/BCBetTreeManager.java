@@ -52,7 +52,7 @@ public class BCBetTreeManager {
 	public void saveBetTree(int level)
 	{
 		Gson gson = new Gson();
-		String json = gson.toJson(BCBetTreeManager.getInstance().getBetTree(0));
+		String json = gson.toJson(BCBetTreeManager.getInstance().getBetTree(level));
 		
 		try {
 			 
