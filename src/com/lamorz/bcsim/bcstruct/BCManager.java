@@ -42,6 +42,7 @@ public class BCManager {
 			BCRound round = new BCRound(gainFromLastRound);
 			gainFromLastRound += round.playAllGames();
 			m_rounds.put(m_currentRound, round);
+			m_currentRound++;
 		}
 		
 		return gainFromLastRound;
