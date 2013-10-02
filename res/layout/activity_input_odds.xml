@@ -27,10 +27,119 @@
     <Button
         android:id="@+id/buttonSave"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/mainScrollView"
+        android:layout_height="20dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="14dp"
-        android:text="Save" />
+        android:layout_alignTop="@+id/mainScrollView"
+        android:text="Save"
+        android:textColor="#000"
+        android:background="#fff"
+        android:textSize="20sp"
+        android:width="100sp" />
+
+    <Button
+        android:id="@+id/Button02"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@+id/Button01"
+        android:layout_below="@+id/Button01"
+        android:layout_marginTop="20dp"
+        android:background="#ff0"
+        android:text="02"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:width="100sp" />
+
+    <Button
+        android:id="@+id/Button03"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@+id/Button02"
+        android:layout_below="@+id/Button02"
+        android:layout_marginTop="20dp"
+        android:background="#0f0"
+        android:text="03"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:width="100sp" />
+
+    <Button
+        android:id="@+id/Button04"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@+id/Button03"
+        android:layout_below="@+id/Button03"
+        android:layout_marginTop="20dp"
+        android:background="#800"
+        android:text="04"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:width="100sp" />
+
+    <Button
+        android:id="@+id/Button05"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@+id/Button04"
+        android:layout_below="@+id/Button04"
+        android:layout_marginTop="20dp"
+        android:background="#00f"
+        android:text="05"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:width="100sp" />
+
+    <Button
+        android:id="@+id/Button06"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@+id/Button05"
+        android:layout_below="@id/Button05"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:background="#f0f"
+        android:text="06"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:width="100sp" />
+
+    <Button
+        android:id="@+id/Button07"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@+id/Button06"
+        android:layout_below="@+id/Button06"
+        android:layout_marginTop="20dp"
+        android:background="#888"
+        android:text="07"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:width="100sp" >
+      </Button>
+
+    <Button
+        android:id="@+id/Button01"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@id/buttonSave"
+        android:layout_below="@id/buttonSave"
+        android:layout_marginTop="20dp"
+        android:background="#fff"
+        android:text="01"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:width="100sp" />
+
+    <Button
+        android:id="@+id/Button08"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@+id/Button07"
+        android:layout_below="@+id/Button07"
+        android:layout_marginTop="20dp"
+        android:background="#f00"
+        android:text="08"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:width="100sp" />
 
 </RelativeLayout>
