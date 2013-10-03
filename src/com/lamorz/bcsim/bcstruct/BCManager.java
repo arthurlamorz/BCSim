@@ -1,11 +1,15 @@
 package com.lamorz.bcsim.bcstruct;
 
+import java.util.List;
+import java.util.ArrayList;
 import android.util.SparseArray;
 
 public class BCManager {
 
 	private SparseArray<BCRound> m_rounds;
 	private int m_currentRound;
+	private int m_initialAmount;
+	private int m_haltAmount;
 	
 	private static BCManager m_instance= null;
 	
@@ -13,6 +17,8 @@ public class BCManager {
 	{
 		m_rounds = new SparseArray<BCRound>();
 		m_currentRound = 0;
+		m_initialAmount = 0;
+		m_haltAmount = 0;
 	}
 	
 	public BCRound getRound(int roundNo)
@@ -26,6 +32,34 @@ public class BCManager {
 
 	public void setCurrentRound(int currentRound) {
 		m_currentRound = currentRound;
+	}
+	
+	/**
+	 * @return the initialAmount
+	 */
+	public int getInitialAmount() {
+		return m_initialAmount;
+	}
+
+	/**
+	 * @param initialAmount the initialAmount to set
+	 */
+	public void setInitialAmount(int initialAmount) {
+		m_initialAmount = initialAmount;
+	}
+
+	/**
+	 * @return the haltAmount
+	 */
+	public int getHaltAmount() {
+		return m_haltAmount;
+	}
+
+	/**
+	 * @param haltAmount the haltAmount to set
+	 */
+	public void setHaltAmount(int haltAmount) {
+		m_haltAmount = haltAmount;
 	}
 
 	public static synchronized BCManager getInstance(){
@@ -46,6 +80,12 @@ public class BCManager {
 		}
 		
 		return gainFromLastRound;
+	}
+	
+	public List<Integer> multipleSimulate(int noOfPass, int noOfRounds, int initialAmount, int haltAmount)
+	{
+		List<Integer> gains = new ArrayList<Integer>();
+		return gains;
 	}
 	
 }
