@@ -2,11 +2,12 @@ package com.lamorz.bcsim.bcstruct;
 
 import java.util.List;
 import java.util.ArrayList;
-import android.util.SparseArray;
+import java.util.Map;
+import java.util.HashMap;
 
 public class BCManager {
 
-	private SparseArray<BCRound> m_rounds;
+	private Map<Integer, BCRound> m_rounds;
 	private int m_currentRound;
 	private int m_initialAmount;
 	private int m_haltAmount;
@@ -15,7 +16,7 @@ public class BCManager {
 	
 	public BCManager()
 	{
-		m_rounds = new SparseArray<BCRound>();
+		m_rounds = new HashMap<Integer, BCRound>();
 		m_currentRound = 0;
 		m_initialAmount = 0;
 		m_haltAmount = 0;
@@ -67,6 +68,12 @@ public class BCManager {
 			m_instance = new BCManager();
     	return m_instance;
     }
+	
+	public void reset()
+	{
+		m_rounds.clear();
+		m_currentRound = 0;
+	}
 	
 	public int simulate(int noOfRounds, int initialAmount, int haltAmount)
 	{
