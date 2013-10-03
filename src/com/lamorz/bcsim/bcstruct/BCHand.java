@@ -23,7 +23,12 @@ public class BCHand {
 		m_win = ranGen.nextInt(MAX_RANDOM_NUMBER)<PLAYER_WIN_RATE ? true : false;
 		m_gain = bet;
 		if (!m_win)
+		{
 			m_gain = -m_gain;
+			BCManager.getInstance().incrementWin();
+		}
+		else
+			BCManager.getInstance().incrementLose();
 			
 	}
 	

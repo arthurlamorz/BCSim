@@ -8,7 +8,7 @@ public class BCRound {
 	
 	private int m_currentGame;
 	private int m_betLevel;
-	private int m_gainFromLastRound;
+	private int m_totalGain;
 	private int m_gainFromThisRound;
 	private BCBetTree m_betTree;
 	
@@ -28,7 +28,7 @@ public class BCRound {
 		m_games = new BCGame[GAMES_PER_ROUND];
 		m_currentGame = 0;
 		m_betLevel = 0;
-		m_gainFromLastRound = gainFromLastRound;
+		m_totalGain = gainFromLastRound;
 		m_gainFromThisRound = 0;
 	}
 	
@@ -36,10 +36,13 @@ public class BCRound {
 	{
 		for (m_currentGame=0; m_currentGame < GAMES_PER_ROUND; m_currentGame++)
 		{
-			BCGame game = new BCGame(m_betLevel);
+			int gain = 0;
+			BCGame game = new BCGame(m_totalGain);
 			m_games[m_currentGame] = game;
 			
-			m_gainFromThisRound += game.playAllHands();
+			gain = game.playAllHands();
+			m_gainFromThisRound += gain;
+			m_totalGain += gain;
 		}
 		
 		return m_gainFromThisRound;

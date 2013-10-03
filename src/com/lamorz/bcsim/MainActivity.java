@@ -66,6 +66,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		 if (view == f_buttonStart)
 		 {
 			 BCManager manager = BCManager.getInstance();
+			 manager.reset();
+			 f_tableLayoutResult.removeAllViews();
+			 m_currentRound = 0;
+			 
 			 int finalGain = manager.simulate(50, 72, 12);
 			 int oldRound = m_currentRound;
 			 m_currentRound = manager.getCurrentRound();
@@ -94,6 +98,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	
 	public void drawRound(int roundID, BCRound round)
 	{
+		m_totalAmount = 0;
 		for (int gameID=0; gameID < BCRound.GAMES_PER_ROUND; gameID++)
 		 {
 	 

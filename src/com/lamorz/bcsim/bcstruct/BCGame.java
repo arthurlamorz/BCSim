@@ -8,6 +8,7 @@ public class BCGame {
 	private int m_currentHand;
 	private int m_betLevel;
 	private int m_totalGain;
+	private boolean m_isHalted;
 	private BCBetTreeNode m_currentBetTreeNode;
 	
 	public BCGame()
@@ -15,8 +16,9 @@ public class BCGame {
 		init(0);
 	}
 	
-	public BCGame(int betLevel)
+	public BCGame(int prevGain)
 	{
+		int betLevel = determineBetLevel(prevGain);
 		init(betLevel);
 	}
 	
@@ -25,7 +27,6 @@ public class BCGame {
 		m_hands = new BCHand[HANDS_PER_GAME];	
 		m_currentHand = 0;
 		m_betLevel = betLevel;
-		
 		m_currentBetTreeNode = BCBetTreeManager.getInstance().getBetTree(m_betLevel).getRootNode();
 	}
 	
@@ -37,6 +38,46 @@ public class BCGame {
 		m_betLevel = betLevel;
 	}
 
+	/**
+	 * @return the isHalted
+	 */
+	public boolean isHalted() {
+		return m_isHalted;
+	}
+
+	/**
+	 * @param isHalted the isHalted to set
+	 */
+	public void setHalted(boolean isHalted) {
+		m_isHalted = isHalted;
+	}
+
+	public int determineBetLevel(int gain)
+	{
+		int betLevel = 0;
+		if (gain >= 30)
+			betLevel = 7;
+		else if (gain >= 25)
+			betLevel = 6;
+		else if (gain >= 20)
+			betLevel = 5;
+		else if (gain >= 15)
+			betLevel = 4;
+		else if (gain >= 12)
+			betLevel = 3;
+		else if (gain >= 8)
+			betLevel = 2;
+		else if (gain >= 5)
+			betLevel = 1;
+		
+		if (gain <= -12)
+			m_isHalted = true;
+		else
+			m_isHalted = false;
+		
+		return betLevel;
+	}
+	
 	public BCHand playSingleHand()
 	{
 		if (m_currentHand == HANDS_PER_GAME)
@@ -45,7 +86,11 @@ public class BCGame {
 			return null;
 		}
 		BCHand hand = new BCHand();
-		hand.play(m_currentHand, m_currentBetTreeNode.getWinNode().getAmount());
+		
+		if (m_isHalted)
+			hand.play(m_currentHand, 0);
+		else
+			hand.play(m_currentHand, m_currentBetTreeNode.getWinNode().getAmount());
 		
 		if(hand.isWin())
 			m_currentBetTreeNode = m_currentBetTreeNode.getWinNode();

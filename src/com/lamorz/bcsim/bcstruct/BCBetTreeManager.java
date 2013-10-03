@@ -67,7 +67,7 @@ public class BCBetTreeManager {
 	}
 	
 	public BCBetTree getBetTree(int level) {
-		if (level >= TOTAL_BET_LEVELS)
+		if (level >= TOTAL_BET_LEVELS || level < 0)
 			return null;
 		return m_betTrees[level];
 	}
