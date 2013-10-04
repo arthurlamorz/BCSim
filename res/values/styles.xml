@@ -74,4 +74,9 @@
        <item name="android:textSize">20sp</item>
        <item name="android:textColor">#f00</item>
    </style>
+   
+   <style name="PreferencesTheme">
+    	<item name="android:background">#00f</item>
+   </style>
+
 </resources>
