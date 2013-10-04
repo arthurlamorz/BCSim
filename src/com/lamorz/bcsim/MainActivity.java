@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.lamorz.bcsim.bcstruct.BCHand;
 import com.lamorz.bcsim.bcstruct.BCGame;
@@ -68,6 +70,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		m_totalAmount = 0;
 		m_currentRound = 0;
+		
 	}	
 
 	@Override
@@ -97,12 +100,17 @@ public class MainActivity extends Activity implements OnClickListener {
 		 
 		 if (view == f_buttonStart)
 		 {
-			 BCManager manager = BCManager.getInstance();
+			 SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+			boolean isShowDetails = SP.getBoolean("showDetails_checkbox",false);
+			int noOfRounds = Integer.parseInt(SP.getString("no_of_rounds_text", "50"));
+			 
+			BCManager manager = BCManager.getInstance();
 			 manager.reset();
 			 f_tableLayoutResult.removeAllViews();
 			 m_currentRound = 0;
 			 
-			 int finalGain = manager.simulate(5000, 72, 12);
+			 int finalGain = manager.simulate(noOfRounds, 72, 12);
 			 int oldRound = m_currentRound;
 			 m_currentRound = manager.getCurrentRound();
 			 
@@ -114,7 +122,8 @@ public class MainActivity extends Activity implements OnClickListener {
 			 for (int roundID = oldRound; roundID < m_currentRound; roundID++)
 			 {
 				 BCRound round = manager.getRound(roundID);
-				 //drawRound(roundID, round);
+				 if (isShowDetails)
+					 drawRound(roundID, round);
 				 /*
 				 try{
 				 Thread.sleep(1000);
