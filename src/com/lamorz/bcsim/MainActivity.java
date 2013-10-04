@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.TableLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableRow;
 
 import android.graphics.Typeface;
@@ -32,6 +33,10 @@ public class MainActivity extends Activity implements OnClickListener {
 	private TableLayout f_tableLayoutResult;
 	private int m_totalAmount;
 	private int m_currentRound;
+	private TextView m_textViewGain;
+	private TextView m_textViewWin;
+	private TextView m_textViewLose;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,17 @@ public class MainActivity extends Activity implements OnClickListener {
 		f_buttonOdds = (Button) findViewById(R.id.buttonOdds);
 		f_buttonOdds.setOnClickListener(this);
 		f_buttonOdds.setTypeface(f_typeface);
+		
+		RelativeLayout rl = (RelativeLayout) findViewById(R.id.MainRelativeLayout);
+		
+		m_textViewGain = (TextView) rl.findViewById(R.id.TextViewGainMain);
+		m_textViewGain.setTypeface(f_typeface);
+		
+		m_textViewLose = (TextView) rl.findViewById(R.id.TextViewLoseMain);
+		m_textViewLose.setTypeface(f_typeface);
+		
+		m_textViewWin = (TextView) rl.findViewById(R.id.TextViewWinMain);
+		m_textViewWin.setTypeface(f_typeface);
 		
 		f_tableLayoutResult = (TableLayout) findViewById(R.id.tableLayoutResult);
 		
@@ -70,13 +86,19 @@ public class MainActivity extends Activity implements OnClickListener {
 			 f_tableLayoutResult.removeAllViews();
 			 m_currentRound = 0;
 			 
-			 int finalGain = manager.simulate(50, 72, 12);
+			 int finalGain = manager.simulate(5000, 72, 12);
 			 int oldRound = m_currentRound;
 			 m_currentRound = manager.getCurrentRound();
+			 
+			 m_textViewGain.setText(" "+finalGain);
+			 m_textViewWin.setText(" "+manager.getNoOfWin());
+			 m_textViewLose.setText(" "+manager.getNoOfLose());
+			 
+			 
 			 for (int roundID = oldRound; roundID < m_currentRound; roundID++)
 			 {
 				 BCRound round = manager.getRound(roundID);
-				 drawRound(roundID, round);
+				 //drawRound(roundID, round);
 				 /*
 				 try{
 				 Thread.sleep(1000);

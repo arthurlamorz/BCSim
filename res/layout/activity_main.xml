@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:lamorz="http://schemas.android.com/apk/res/com.lamorz.bcsim"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MainRelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000"
@@ -73,5 +74,47 @@
         android:text="TREE" 
         android:height="20sp"
         android:textSize="20sp"/>
+
+	<TextView
+        android:id="@+id/TextViewWinMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonOdds"
+        android:layout_alignRight="@+id/buttonOdds"
+        android:layout_below="@+id/buttonOdds"
+        android:layout_marginTop="20dp"
+        android:textColor="#0f0"
+        android:background="#000"
+        android:height="20sp"
+        android:textSize="20sp"
+        android:text="WIN" />
+
+    <TextView
+        android:id="@+id/TextViewLoseMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextViewWinMain"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/TextViewWinMain"
+        android:layout_marginTop="20dp"
+        android:textColor="#f00"
+        android:background="#000"
+        android:height="20sp"
+        android:textSize="20sp"
+        android:text="LOSE" />
+
+    <TextView
+        android:id="@+id/TextViewGainMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextViewLoseMain"
+        android:layout_alignRight="@+id/TextViewLoseMain"
+        android:layout_below="@+id/TextViewLoseMain"
+        android:layout_marginTop="20dp"
+        android:textColor="#ff0"
+        android:background="#000"
+        android:height="20sp"
+        android:textSize="20sp" 
+        android:text="GAIN" />    
 
 </RelativeLayout>
