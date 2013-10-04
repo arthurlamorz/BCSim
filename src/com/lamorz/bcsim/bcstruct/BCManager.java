@@ -37,6 +37,22 @@ public class BCManager {
 		return m_currentRound;
 	}
 
+	public int getNoOfWin() {
+		return m_noOfWin;
+	}
+
+	public void setNoOfWin(int noOfWin) {
+		m_noOfWin = noOfWin;
+	}
+
+	public int getNoOfLose() {
+		return m_noOfLose;
+	}
+
+	public void setNoOfLose(int noOfLose) {
+		m_noOfLose = noOfLose;
+	}
+
 	public void setCurrentRound(int currentRound) {
 		m_currentRound = currentRound;
 	}
@@ -109,7 +125,7 @@ public class BCManager {
 			m_rounds.put(m_currentRound, round);
 			m_currentRound++;
 			
-			if (gainFromLastRound <= -6 || gainFromLastRound >= 13)
+			if (gainFromLastRound <= -12 || gainFromLastRound >= 3)
 			{
 				m_totalGain += gainFromLastRound;
 				gainFromLastRound = 0;

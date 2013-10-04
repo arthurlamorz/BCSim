@@ -25,10 +25,10 @@ public class BCHand {
 		if (!m_win)
 		{
 			m_gain = -m_gain;
-			BCManager.getInstance().incrementWin();
+			BCManager.getInstance().incrementLose();
 		}
 		else
-			BCManager.getInstance().incrementLose();
+			BCManager.getInstance().incrementWin();
 			
 	}
 	
