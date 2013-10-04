@@ -14,7 +14,9 @@ import java.io.IOException;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -69,6 +71,21 @@ public class InputOddsActivity extends Activity implements OnClickListener {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onMenuItemSelected(int, android.view.MenuItem)
+	 */
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		// TODO Auto-generated method stub
+		if (item.getItemId() == R.id.action_settings)
+		{
+			Intent intentApp = new Intent(InputOddsActivity.this, SettingsActivity.class);
+			InputOddsActivity.this.startActivity(intentApp);
+		}
+		
+		return super.onMenuItemSelected(featureId, item);
+	}
+	
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
