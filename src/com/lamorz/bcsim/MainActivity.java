@@ -12,6 +12,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import android.graphics.Typeface;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -60,7 +61,22 @@ public class MainActivity extends Activity implements OnClickListener {
 		return true;
 	}
 	
-	 @Override
+	 /* (non-Javadoc)
+	 * @see android.app.Activity#onMenuItemSelected(int, android.view.MenuItem)
+	 */
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		// TODO Auto-generated method stub
+		if (item.getItemId() == R.id.action_settings)
+		{
+			Intent intentApp = new Intent(MainActivity.this, SettingsActivity.class);
+			MainActivity.this.startActivity(intentApp);
+		}
+		
+		return super.onMenuItemSelected(featureId, item);
+	}
+
+	@Override
      public void onClick(View view)  {
 		 
 		 if (view == f_buttonStart)
