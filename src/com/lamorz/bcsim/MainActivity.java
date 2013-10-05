@@ -110,7 +110,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			 f_tableLayoutResult.removeAllViews();
 			 m_currentRound = 0;
 			 
-			 int finalGain = manager.simulate(noOfRounds, 3, -12);
+			 int finalGain = manager.simulate(noOfRounds, 3, -8);
 			 int oldRound = m_currentRound;
 			 m_currentRound = manager.getCurrentRound();
 			 
@@ -118,7 +118,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			 m_textViewWin.setText(" "+manager.getNoOfWin());
 			 m_textViewLose.setText(" "+manager.getNoOfLose());
 			 
-			 
+			 m_totalAmount = 0;
 			 for (int roundID = oldRound; roundID < m_currentRound; roundID++)
 			 {
 				 BCRound round = manager.getRound(roundID);
@@ -137,13 +137,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void drawRound(int roundID, BCRound round)
 	{
 
-		m_totalAmount = 0;
 		String displayStr = "";
 		TableRow tbrow   = new TableRow(this);
 		TextView textView = new TextView(this);
 		for (int gameID=0; gameID < BCRound.GAMES_PER_ROUND; gameID++)
 		 {
-	 
 			 BCGame game = round.getGame(gameID);
 	
 			 for (int i=0; i<BCGame.HANDS_PER_GAME; i++)
@@ -156,9 +154,13 @@ public class MainActivity extends Activity implements OnClickListener {
 			 //Gson gson = new Gson();
 			 //String json = gson.toJson(round);
 			 
-			 m_totalAmount += game.getTotalGain(); 
-			 displayStr += ("|-------+-----+------|\n|Gain" + String.format("%1$3d", game.getTotalGain()) + "|Amount:" + String.format("%1$5d", round.getTotalGain()) + "|\n|-------+-----+------|\n");
+			 displayStr += ("|-------+-----+------|\n|Gain" + String.format("%1$3d", game.getTotalGain()) + "|Amount:" + String.format("%1$5d", game.getPrevGain() + game.getTotalGain()) + "|\n|-------+-----+------|\n");
 		 }
+		if (round.isReset())
+		{
+			m_totalAmount += round.getTotalGain(); 
+			displayStr += ("|Reset " + String.format("%1$3d", round.getTotalGain()) + " Total " + String.format("%1$3d", m_totalAmount) + " |");
+		}
 		
 		textView.setText(displayStr);
 		textView.setTextAppearance(getApplicationContext(), R.style.textStyle01);

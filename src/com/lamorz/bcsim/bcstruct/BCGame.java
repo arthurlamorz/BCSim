@@ -8,28 +8,40 @@ public class BCGame {
 	private int m_currentHand;
 	private int m_betLevel;
 	private int m_totalGain;
+	private int m_prevGain;
 	private boolean m_isHalted;
 	private BCBetTreeNode m_currentBetTreeNode;
 	
 	public BCGame()
 	{
-		init(0);
+		init(0,0);
 	}
 	
 	public BCGame(int prevGain)
 	{
 		int betLevel = determineBetLevel(prevGain);
-		init(betLevel);
+		init(betLevel, prevGain);
 	}
 	
-	private void init(int betLevel)
+	private void init(int betLevel, int prevGain)
 	{
 		m_hands = new BCHand[HANDS_PER_GAME];	
 		m_currentHand = 0;
+		m_prevGain = prevGain;
 		m_betLevel = betLevel;
 		m_currentBetTreeNode = BCBetTreeManager.getInstance().getBetTree(m_betLevel).getRootNode();
 	}
 	
+	
+	
+	public int getPrevGain() {
+		return m_prevGain;
+	}
+
+	public void setPrevGain(int prevGain) {
+		m_prevGain = prevGain;
+	}
+
 	public int getBetLevel() {
 		return m_betLevel;
 	}
