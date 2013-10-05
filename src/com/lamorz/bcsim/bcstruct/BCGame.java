@@ -82,7 +82,7 @@ public class BCGame {
 		else if (gain >= 5)
 			betLevel = 1;
 		
-		if (gain <= -12)
+		if (gain <= BCManager.getInstance().getHaltAmount())
 			m_isHalted = true;
 		else
 			m_isHalted = false;

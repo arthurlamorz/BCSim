@@ -106,6 +106,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			int noOfRounds = Integer.parseInt(SP.getString("no_of_rounds_text", "50"));
 			int upperLimit = Integer.parseInt(SP.getString("upper_limit_text", "3"));
 			int lowerLimit = Integer.parseInt(SP.getString("lower_limit_text", "-8"));
+			
+			int haltAmount = -5;
+			BCManager.getInstance().setHaltAmount(haltAmount);
 			 
 			BCManager manager = BCManager.getInstance();
 			 manager.reset();
