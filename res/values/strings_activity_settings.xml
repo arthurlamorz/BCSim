@@ -11,8 +11,11 @@
     <string name="pref_description_show_details">Show all details of simulation, including, win, lose, gain for each hand</string>
     <string name="pref_title_no_of_rounds">Rounds per Simulation</string>
     <string name="pref_default_no_of_rounds">50</string>
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-
+    <string name="pref_title_upper_limit">Upper Limit</string>
+    <string name="pref_default_upper_limit">3</string>
+    <string name="pref_title_lower_limit">Lower Limit</string>
+    <string name="pref_default_lower_limit">-8</string>
+   
     <string-array name="pref_example_list_titles">
         <item>Always</item>
         <item>When possible</item>

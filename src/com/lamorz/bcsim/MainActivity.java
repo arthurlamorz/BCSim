@@ -104,13 +104,15 @@ public class MainActivity extends Activity implements OnClickListener {
 
 			boolean isShowDetails = SP.getBoolean("showDetails_checkbox",false);
 			int noOfRounds = Integer.parseInt(SP.getString("no_of_rounds_text", "50"));
+			int upperLimit = Integer.parseInt(SP.getString("upper_limit_text", "3"));
+			int lowerLimit = Integer.parseInt(SP.getString("lower_limit_text", "-8"));
 			 
 			BCManager manager = BCManager.getInstance();
 			 manager.reset();
 			 f_tableLayoutResult.removeAllViews();
 			 m_currentRound = 0;
 			 
-			 int finalGain = manager.simulate(noOfRounds, 3, -8);
+			 int finalGain = manager.simulate(noOfRounds, upperLimit, lowerLimit);
 			 int oldRound = m_currentRound;
 			 m_currentRound = manager.getCurrentRound();
 			 
