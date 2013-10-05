@@ -110,7 +110,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			 f_tableLayoutResult.removeAllViews();
 			 m_currentRound = 0;
 			 
-			 int finalGain = manager.simulate(noOfRounds, 72, 12);
+			 int finalGain = manager.simulate(noOfRounds, 3, -12);
 			 int oldRound = m_currentRound;
 			 m_currentRound = manager.getCurrentRound();
 			 
@@ -124,15 +124,6 @@ public class MainActivity extends Activity implements OnClickListener {
 				 BCRound round = manager.getRound(roundID);
 				 if (isShowDetails)
 					 drawRound(roundID, round);
-				 /*
-				 try{
-				 Thread.sleep(1000);
-				 }
-				 catch (Exception e)
-				 {
-					 e.printStackTrace();
-				 }
-				 */
 			 }
 		 }
 		 else if (view == f_buttonOdds)
@@ -166,7 +157,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			 //String json = gson.toJson(round);
 			 
 			 m_totalAmount += game.getTotalGain(); 
-			 displayStr += ("|-------+-----+------|\n|Gain" + String.format("%1$3d", game.getTotalGain()) + "|Amount:" + String.format("%1$5d", m_totalAmount) + "|\n|-------+-----+------|\n");
+			 displayStr += ("|-------+-----+------|\n|Gain" + String.format("%1$3d", game.getTotalGain()) + "|Amount:" + String.format("%1$5d", round.getTotalGain()) + "|\n|-------+-----+------|\n");
 		 }
 		
 		textView.setText(displayStr);
