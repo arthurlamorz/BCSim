@@ -10,6 +10,7 @@ public class BCRound {
 	private int m_betLevel;
 	private int m_totalGain;
 	private int m_gainFromThisRound;
+	private boolean m_isReset;
 	private BCBetTree m_betTree;
 	
 	public BCRound()
@@ -30,6 +31,7 @@ public class BCRound {
 		m_betLevel = 0;
 		m_totalGain = gainFromLastRound;
 		m_gainFromThisRound = 0;
+		m_isReset = false;
 	}
 	
 	public int playAllGames()
@@ -46,6 +48,22 @@ public class BCRound {
 		}
 		
 		return m_gainFromThisRound;
+	}
+	
+	public boolean isReset() {
+		return m_isReset;
+	}
+
+	public void setReset(boolean isReset) {
+		m_isReset = isReset;
+	}
+
+	public int getTotalGain() {
+		return m_totalGain;
+	}
+
+	public void setTotalGain(int totalGain) {
+		m_totalGain = totalGain;
 	}
 
 	public BCGame getGame(int gameID)

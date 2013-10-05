@@ -114,7 +114,7 @@ public class BCManager {
 		m_noOfLose = 0;
 	}
 	
-	public int simulate(int noOfRounds, int initialAmount, int haltAmount)
+	public int simulate(int noOfRounds, int upperLimit, int lowerLimit)
 	{
 		int gainFromLastRound = 0;
 		int m_totalGain = 0;
@@ -125,13 +125,15 @@ public class BCManager {
 			m_rounds.put(m_currentRound, round);
 			m_currentRound++;
 			
-			if (gainFromLastRound <= -12 || gainFromLastRound >= 3)
+			if (gainFromLastRound <= lowerLimit || gainFromLastRound >= upperLimit)
 			{
+				round.setReset(true);
 				m_totalGain += gainFromLastRound;
 				gainFromLastRound = 0;
 			}
 		}
 		
+		m_totalGain += gainFromLastRound;
 		return m_totalGain;
 	}
 	
