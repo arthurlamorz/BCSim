@@ -12,6 +12,7 @@ public class BCStatistics {
 	private int m_maxTotalLost;
 	private int m_currentConsecutiveLost;
 	private int m_maxConsecutiveLost;
+	private int m_totalGain;
 	private double m_mean;
 	private double m_sd;
 	
@@ -21,6 +22,7 @@ public class BCStatistics {
 		// TODO Auto-generated constructor stub
 		m_results = new ArrayList<Integer>();
 		m_lowest = 0;
+		m_totalGain = 0;
 		m_currentTotalLost = 0;
 		m_maxTotalLost = 0;
 		m_currentConsecutiveLost = 0;
@@ -30,6 +32,16 @@ public class BCStatistics {
 	}
 	
 	
+	public int getTotalGain() {
+		return m_totalGain;
+	}
+
+
+	public void setTotalGain(int totalGain) {
+		m_totalGain = totalGain;
+	}
+
+
 	public int getMaxTotalLost() {
 		return m_maxTotalLost;
 	}
@@ -82,6 +94,7 @@ public class BCStatistics {
 	public void putResult(int result)
 	{
 		m_results.add(result);
+		m_totalGain += result;
 		m_noOfSamples = m_results.size();
 		
 		if (result < m_lowest)

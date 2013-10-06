@@ -115,6 +115,71 @@
         android:background="#000"
         android:height="20sp"
         android:textSize="20sp" 
-        android:text="GAIN" />    
+        android:text="GAIN" />
+
+    <Button
+        android:id="@+id/ButtonSim"
+        android:layout_width="100sp"
+        android:layout_height="20sp"
+        android:layout_alignLeft="@+id/TextViewGainMain"
+        android:layout_centerVertical="true"
+        android:background="#0f0"
+        android:height="20sp"
+        android:text="SIM"
+        android:textColor="#000"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/TextViewMean"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ButtonSim"
+        android:layout_below="@+id/ButtonSim"
+        android:layout_marginTop="20dp"
+        android:background="#000"
+        android:height="20sp"
+        android:text="MEAN"
+        android:textColor="#00f"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/TextViewStDev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextViewMean"
+        android:layout_below="@+id/TextViewMean"
+        android:layout_marginTop="20dp"
+        android:background="#000"
+        android:height="20sp"
+        android:text="STDEV"
+        android:textColor="#0ff"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/TextViewMaxConLost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextViewStDev"
+        android:layout_below="@+id/TextViewStDev"
+        android:layout_marginTop="20dp"
+        android:background="#000"
+        android:height="20sp"
+        android:text="Max CON"
+        android:textColor="#f0f"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/TextViewMaxTotalLost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/mainScrollView"
+        android:layout_alignLeft="@+id/TextViewMaxConLost"
+        android:layout_below="@+id/TextViewMaxConLost"
+        android:layout_marginTop="20dp"
+        android:background="#000"
+        android:height="20sp"
+        android:text="Max TTL"
+        android:textColor="#f0f"
+        android:textSize="20sp" />
 
 </RelativeLayout>

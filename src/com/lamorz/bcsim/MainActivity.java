@@ -21,7 +21,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.lamorz.bcsim.bcstruct.BCHand;
+import com.lamorz.bcsim.bcstruct.BCStatistics;
 import com.lamorz.bcsim.bcstruct.BCGame;
 import com.lamorz.bcsim.bcstruct.BCRound;
 import com.lamorz.bcsim.bcstruct.BCManager;
@@ -39,6 +39,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	private TextView m_textViewGain;
 	private TextView m_textViewWin;
 	private TextView m_textViewLose;
+	private Button f_buttonSim;
+	private TextView m_textViewMean;
+	private TextView m_textViewSD;
+	private TextView m_textViewMaxCon;
+	private TextView m_textViewMaxTotal;
 	
 	
 	@Override
@@ -55,6 +60,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		f_buttonOdds.setOnClickListener(this);
 		f_buttonOdds.setTypeface(f_typeface);
 		
+		f_buttonSim = (Button) findViewById(R.id.ButtonSim);
+		f_buttonSim.setOnClickListener(this);
+		f_buttonSim.setTypeface(f_typeface);
+		
 		RelativeLayout rl = (RelativeLayout) findViewById(R.id.MainRelativeLayout);
 		
 		m_textViewGain = (TextView) rl.findViewById(R.id.TextViewGainMain);
@@ -65,6 +74,18 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		m_textViewWin = (TextView) rl.findViewById(R.id.TextViewWinMain);
 		m_textViewWin.setTypeface(f_typeface);
+		
+		m_textViewMean = (TextView) rl.findViewById(R.id.TextViewMean);
+		m_textViewMean.setTypeface(f_typeface);
+		
+		m_textViewSD = (TextView) rl.findViewById(R.id.TextViewStDev);
+		m_textViewSD.setTypeface(f_typeface);
+		
+		m_textViewMaxCon = (TextView) rl.findViewById(R.id.TextViewMaxConLost);
+		m_textViewMaxCon.setTypeface(f_typeface);
+		
+		m_textViewMaxTotal = (TextView) rl.findViewById(R.id.TextViewMaxTotalLost);
+		m_textViewMaxTotal.setTypeface(f_typeface);
 		
 		f_tableLayoutResult = (TableLayout) findViewById(R.id.tableLayoutResult);
 		
@@ -98,10 +119,10 @@ public class MainActivity extends Activity implements OnClickListener {
 	@Override
      public void onClick(View view)  {
 		 
+		SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+		
 		 if (view == f_buttonStart)
 		 {
-			 SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-
 			boolean isShowDetails = SP.getBoolean("showDetails_checkbox",false);
 			int noOfRounds = Integer.parseInt(SP.getString("no_of_rounds_text", "50"));
 			int upperLimit = Integer.parseInt(SP.getString("upper_limit_text", "3"));
@@ -136,6 +157,31 @@ public class MainActivity extends Activity implements OnClickListener {
 			 Intent intentApp = new Intent(MainActivity.this, InputOddsActivity.class);
 
 			 MainActivity.this.startActivity(intentApp);
+		 }
+		 else if (view == f_buttonSim)
+		 {
+			 BCManager manager = BCManager.getInstance();
+			 
+			 manager.reset();
+			 f_tableLayoutResult.removeAllViews();
+			 m_currentRound = 0;
+			 m_totalAmount = 0;
+			 
+			int noOfRounds = Integer.parseInt(SP.getString("no_of_rounds_text", "50"));
+			int upperLimit = Integer.parseInt(SP.getString("upper_limit_text", "3"));
+			int lowerLimit = Integer.parseInt(SP.getString("lower_limit_text", "-8"));
+				
+			int haltAmount = -5;
+			BCManager.getInstance().setHaltAmount(haltAmount);
+			 
+			 BCStatistics stats = manager.multipleSimulate(1000, noOfRounds, upperLimit, lowerLimit);
+			 
+			 
+				m_textViewMean.setText(String.format("%1.3f", stats.getMean()));
+				m_textViewSD.setText(String.format("%1.3f", stats.getSd()));	
+				m_textViewMaxCon.setText(String.format("%1$1d", +stats.getMaxConsecutiveLost()));
+				m_textViewMaxTotal.setText(String.format("%1$1d\n%2$3d\n%3$5d", stats.getLowest(), stats.getMaxTotalLost(), stats.getTotalGain()));
+			 
 		 }
 	}
 	
