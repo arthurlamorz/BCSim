@@ -13,5 +13,14 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="@string/pref_title_halt_amount" />
+    
+    <EditTextPreference
+        android:defaultValue="@string/pref_default_no_of_passes"
+        android:inputType="textCapWords"
+        android:key="no_of_passes_text"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_no_of_passes" />
 
 </PreferenceScreen>
