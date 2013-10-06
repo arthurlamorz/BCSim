@@ -137,10 +137,18 @@ public class BCManager {
 		return m_totalGain;
 	}
 	
-	public List<Integer> multipleSimulate(int noOfPass, int noOfRounds, int initialAmount, int haltAmount)
+	public BCStatistics multipleSimulate(int noOfPass, int noOfRounds, int upperLimit, int lowerLimit)
 	{
-		List<Integer> gains = new ArrayList<Integer>();
-		return gains;
+		BCStatistics stats = new BCStatistics();
+
+		for (int i=0; i<noOfPass; i++)
+		{
+			stats.putResult(simulate(noOfRounds, upperLimit, lowerLimit));
+		}
+		
+		stats.calculateMean();
+		stats.calculateStdDev();
+		return stats;
 	}
 	
 	public void incrementWin() { m_noOfWin ++; }
