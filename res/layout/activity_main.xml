@@ -178,7 +178,7 @@
         android:layout_marginTop="20dp"
         android:background="#000"
         android:height="20sp"
-        android:text="Max TTL"
+        android:text="Max TTL\nHist Low\nMax Lost\nTTL Gain"
         android:textColor="#f0f"
         android:textSize="20sp" />
 
