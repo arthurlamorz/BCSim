@@ -64,13 +64,13 @@ public class SettingsActivity extends PreferenceActivity {
 
 		// Add 'notifications' preferences, and a corresponding header.
 		PreferenceCategory fakeHeader = new PreferenceCategory(this);
-		fakeHeader.setTitle(R.string.pref_header_notifications);
+		fakeHeader.setTitle(R.string.pref_header_limits);
 		getPreferenceScreen().addPreference(fakeHeader);
 		addPreferencesFromResource(R.xml.pref_notification);
 
 		// Add 'data and sync' preferences, and a corresponding header.
 		fakeHeader = new PreferenceCategory(this);
-		fakeHeader.setTitle(R.string.pref_header_data_sync);
+		fakeHeader.setTitle(R.string.pref_header_halting);
 		getPreferenceScreen().addPreference(fakeHeader);
 		addPreferencesFromResource(R.xml.pref_data_sync);
 
@@ -80,6 +80,7 @@ public class SettingsActivity extends PreferenceActivity {
 		bindPreferenceSummaryToValue(findPreference("no_of_rounds_text"));
 		bindPreferenceSummaryToValue(findPreference("upper_limit_text"));
 		bindPreferenceSummaryToValue(findPreference("lower_limit_text"));
+		bindPreferenceSummaryToValue(findPreference("halt_amount_text"));
 	}
 
 	/** {@inheritDoc} */

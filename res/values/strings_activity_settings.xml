@@ -15,6 +15,8 @@
     <string name="pref_default_upper_limit">3</string>
     <string name="pref_title_lower_limit">Lower Limit</string>
     <string name="pref_default_lower_limit">-8</string>
+    <string name="pref_title_halt_amount">Halt Amount</string>
+    <string name="pref_default_halt_amount">-8</string>
    
     <string-array name="pref_example_list_titles">
         <item>Always</item>
@@ -28,7 +30,7 @@
     </string-array>
 
     <!-- Example settings for Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sync</string>
+    <string name="pref_header_halting">Halting</string>
     <string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
@@ -51,7 +53,7 @@
     <string name="pref_title_system_sync_settings">System sync settings</string>
 
     <!-- Example settings for Notifications -->
-    <string name="pref_header_notifications">Notifications</string>
+    <string name="pref_header_limits">Limits</string>
     <string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
