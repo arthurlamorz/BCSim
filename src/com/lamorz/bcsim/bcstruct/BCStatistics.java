@@ -13,9 +13,13 @@ public class BCStatistics {
 	private int m_maxTotalLost;
 	private int m_currentConsecutiveLost;
 	private int m_maxConsecutiveLost;
+	
 	private int m_totalGain;
+	private int m_sumXSquared;
+	
 	private int m_historyHigh;
 	private int m_maxDiffFromHigh;
+	
 	private double m_mean;
 	private double m_sd;
 	
@@ -27,6 +31,7 @@ public class BCStatistics {
 		m_lowest = 0;
 		m_cumulativeLow = 0;
 		m_totalGain = 0;
+		m_sumXSquared = 0;
 		m_currentTotalLost = 0;
 		m_maxTotalLost = 0;
 		m_currentConsecutiveLost = 0;
@@ -142,13 +147,15 @@ public class BCStatistics {
 	
 	public void putResult(int result)
 	{
-		m_results.add(result);
+		//m_results.add(result);
 		
+		m_sumXSquared += result*result;
 		m_totalGain += result;
+		m_noOfSamples++;
 		if (m_totalGain < m_cumulativeLow)
 			m_cumulativeLow = m_totalGain;
 		
-		m_noOfSamples = m_results.size();
+		//m_noOfSamples = m_results.size();
 		
 		if (result < m_lowest)
 			m_lowest = result;
@@ -186,11 +193,7 @@ public class BCStatistics {
 		if (m_noOfSamples == 0) return 0;
 		
 		
-		for (int result : m_results) {
-			total += (double)result;
-		}
-		
-		m_mean = total/((double)m_noOfSamples);
+		m_mean = ((double)m_totalGain)/((double)m_noOfSamples);
 		return m_mean;
 		
 	}
@@ -199,11 +202,11 @@ public class BCStatistics {
     {
 		if (m_noOfSamples == 0) return 0;
 		
-        double mean = getMean();
-        double temp = 0;
-        for(int a : m_results)
-            temp += (mean-(double)a)*(mean-(double)a);
-            return temp/((double)m_noOfSamples);
+        double mean = calculateMean();
+        double meanXSquared = (double)m_sumXSquared/m_noOfSamples;
+        
+        return meanXSquared - (mean * mean);
+       
     }
 
     double calculateStdDev()
