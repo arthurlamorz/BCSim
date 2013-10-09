@@ -15,6 +15,8 @@ public class BCManager {
 	private int m_noOfWin;
 	private int m_noOfLose;
 	
+	private BCStatistics m_newestStats; 
+	
 	private static BCManager m_instance= null;
 	
 	public BCManager()
@@ -26,8 +28,24 @@ public class BCManager {
 		m_totalGain = 0;
 		m_noOfWin = 0;
 		m_noOfLose = 0;
+		
+		m_newestStats = null;
 	}
 	
+	/**
+	 * @return the newestStats
+	 */
+	public BCStatistics getNewestStats() {
+		return m_newestStats;
+	}
+
+	/**
+	 * @param newestStats the newestStats to set
+	 */
+	public void setNewestStats(BCStatistics newestStats) {
+		m_newestStats = newestStats;
+	}
+
 	public BCRound getRound(int roundNo)
 	{
 		return m_rounds.get(roundNo);
@@ -148,6 +166,7 @@ public class BCManager {
 		
 		stats.calculateMean();
 		stats.calculateStdDev();
+		m_newestStats = stats;
 		return stats;
 	}
 	

@@ -26,7 +26,6 @@ import com.lamorz.bcsim.bcstruct.BCGame;
 import com.lamorz.bcsim.bcstruct.BCRound;
 import com.lamorz.bcsim.bcstruct.BCManager;
 
-import com.google.gson.Gson;
 
 public class MainActivity extends Activity implements OnClickListener {
 
