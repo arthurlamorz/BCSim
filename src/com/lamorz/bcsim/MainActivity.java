@@ -169,9 +169,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			int noOfPasses = Integer.parseInt(SP.getString("no_of_passes_text", "1000"));
 			int noOfRounds = Integer.parseInt(SP.getString("no_of_rounds_text", "50"));
 			int upperLimit = Integer.parseInt(SP.getString("upper_limit_text", "3"));
-			int lowerLimit = Integer.parseInt(SP.getString("lower_limit_text", "-8"));
+			int lowerLimit = Integer.parseInt(SP.getString("lower_limit_text", "-3"));
 				
-			int haltAmount = -5;
+			int haltAmount = Integer.parseInt(SP.getString("halt_amount_text", "-3"));
 			BCManager.getInstance().setHaltAmount(haltAmount);
 			 
 			 BCStatistics stats = manager.multipleSimulate(noOfPasses, noOfRounds, upperLimit, lowerLimit);
