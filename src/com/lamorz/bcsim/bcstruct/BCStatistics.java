@@ -209,7 +209,7 @@ public class BCStatistics {
        
     }
 
-    double calculateStdDev()
+    public double calculateStdDev()
     {
     	m_sd = Math.sqrt(calculateVariance());
         return m_sd;
