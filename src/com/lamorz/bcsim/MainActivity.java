@@ -180,7 +180,9 @@ public class MainActivity extends Activity implements OnClickListener {
 				m_textViewMean.setText(String.format("%1.3f", stats.getMean()));
 				m_textViewSD.setText(String.format("%1.3f", stats.getSd()));	
 				m_textViewMaxCon.setText(String.format("%1$1d", +stats.getMaxConsecutiveLost()));
-				m_textViewMaxTotal.setText(String.format("%1$1d\n%2$3d\n%3$3d\n%4$5d", stats.getLowest(), stats.getMaxDiffFromHigh(), stats.getMaxTotalLost(), stats.getTotalGain()));
+				String dispStr = String.format("%1$1d\n%2$3d\n%3$3d\n%4$5d\n",stats.getLowest(), stats.getMaxDiffFromHigh(), stats.getMaxTotalLost(), stats.getTotalGain());
+				dispStr = dispStr + String.format("%1.3f\n%1.3f", stats.getMeanRoundsToTarget(), stats.getSdRoundsToTarget());
+				m_textViewMaxTotal.setText(dispStr);
 			 
 		 }
 	}

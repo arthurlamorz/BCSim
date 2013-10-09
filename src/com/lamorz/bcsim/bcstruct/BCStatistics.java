@@ -24,8 +24,10 @@ public class BCStatistics {
 	private double m_sd;
 	
 	private int m_targetGain;
+	private int m_noOfSmaplesRoundsToTarget;
 	private double m_meanRoundsToTarget;
 	private double m_sdRoundsToTarget;
+	private double m_sumRoundsToTarget;
 	private double m_sumXsqRoundsToTarget;
 	private int m_roundsNotMeetingTarget;
 	private int m_gainNotMeetingTarget;
@@ -45,12 +47,14 @@ public class BCStatistics {
 		m_maxConsecutiveLost = 0;
 		m_mean = 0.0;
 		m_sd = 0.0;
-		m_targetGain = 0;
+		m_targetGain = 100;
 		m_meanRoundsToTarget = 0;
 		m_sdRoundsToTarget = 0;
+		m_sumRoundsToTarget = 0;
 		m_sumXsqRoundsToTarget = 0;
 		m_roundsNotMeetingTarget = 0;
 		m_gainNotMeetingTarget = 0;
+		m_noOfSmaplesRoundsToTarget = 0;
 	}
 	
 	
@@ -236,12 +240,21 @@ public class BCStatistics {
 		int diffFromHigh = m_totalGain - m_historyHigh;
 		if (diffFromHigh < m_maxDiffFromHigh)
 			m_maxDiffFromHigh = diffFromHigh;
+		
+		m_gainNotMeetingTarget += result;
+		m_roundsNotMeetingTarget ++;
+		if (m_gainNotMeetingTarget >= m_targetGain)
+		{
+			m_sumRoundsToTarget += m_roundsNotMeetingTarget;
+			m_sumXsqRoundsToTarget += m_roundsNotMeetingTarget * m_roundsNotMeetingTarget;
+			m_gainNotMeetingTarget = 0;
+			m_roundsNotMeetingTarget = 0;
+			m_noOfSmaplesRoundsToTarget ++;
+		}
 	}
 	
 	public double calculateMean()
-	{
-		double total = 0;
-		
+	{	
 		if (m_noOfSamples == 0) return 0;
 		
 		
@@ -255,7 +268,7 @@ public class BCStatistics {
 		if (m_noOfSamples == 0) return 0;
 		
         double mean = calculateMean();
-        double meanXSquared = (double)m_sumXSquared/m_noOfSamples;
+        double meanXSquared = (double)m_sumXSquared/(double)m_noOfSamples;
         
         return meanXSquared - (mean * mean);
        
@@ -267,4 +280,24 @@ public class BCStatistics {
         return m_sd;
     }
 	
+    public double calculateMeanRoundToTarget()
+	{			
+		if (m_noOfSmaplesRoundsToTarget == 0) return 0;
+		
+		
+		m_meanRoundsToTarget = ((double)m_sumRoundsToTarget)/((double)m_noOfSmaplesRoundsToTarget);
+		return m_meanRoundsToTarget;	
+	}
+    
+    public double calculateSDRoundToTarget()
+    {
+    	if (m_noOfSmaplesRoundsToTarget == 0) return 0;
+		
+        double mean = calculateMeanRoundToTarget();
+        double meanXSquared = (double)m_sumXsqRoundsToTarget/(double)m_noOfSmaplesRoundsToTarget;
+        
+        m_sdRoundsToTarget =  Math.sqrt(meanXSquared - (mean * mean));
+        return m_sdRoundsToTarget;
+       
+    }
 }

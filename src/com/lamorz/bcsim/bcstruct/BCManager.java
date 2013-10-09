@@ -166,6 +166,8 @@ public class BCManager {
 		
 		stats.calculateMean();
 		stats.calculateStdDev();
+		stats.calculateMeanRoundToTarget();
+		stats.calculateSDRoundToTarget();
 		m_newestStats = stats;
 		return stats;
 	}
