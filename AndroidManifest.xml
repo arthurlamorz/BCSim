@@ -19,6 +19,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.lamorz.bcsim.MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,11 +29,12 @@
         </activity>
         <activity
             android:name="com.lamorz.bcsim.InputOddsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_input_odds" >
         </activity>
         <activity
             android:name="com.lamorz.bcsim.SettingsActivity"
-            android:label="@string/title_activity_settings" 
+            android:label="@string/title_activity_settings"
             android:theme="@style/PreferencesTheme">
         </activity>
     </application>

@@ -14,6 +14,8 @@ public class BCStatistics {
 	private int m_currentConsecutiveLost;
 	private int m_maxConsecutiveLost;
 	private int m_totalGain;
+	private int m_historyHigh;
+	private int m_maxDiffFromHigh;
 	private double m_mean;
 	private double m_sd;
 	
@@ -84,6 +86,40 @@ public class BCStatistics {
 
 	public void setRoundsNotMeetingTarget(int roundsNotMeetingTarget) {
 		m_roundsNotMeetingTarget = roundsNotMeetingTarget;
+	}
+
+	
+	/**
+	 * @return the maxDiffFromHigh
+	 */
+	public int getMaxDiffFromHigh() {
+		return m_maxDiffFromHigh;
+	}
+
+
+
+	/**
+	 * @param maxDiffFromHigh the maxDiffFromHigh to set
+	 */
+	public void setMaxDiffFromHigh(int maxDiffFromHigh) {
+		m_maxDiffFromHigh = maxDiffFromHigh;
+	}
+
+
+
+	/**
+	 * @return the historyHigh
+	 */
+	public int getHistoryHigh() {
+		return m_historyHigh;
+	}
+
+
+	/**
+	 * @param historyHigh the historyHigh to set
+	 */
+	public void setHistoryHigh(int historyHigh) {
+		m_historyHigh = historyHigh;
 	}
 
 
@@ -169,6 +205,7 @@ public class BCStatistics {
 		if (result < m_lowest)
 			m_lowest = result;
 		
+		
 		if (result < 0)
 		{
 			m_currentConsecutiveLost += 1;
@@ -185,6 +222,13 @@ public class BCStatistics {
 			m_currentConsecutiveLost = 0;
 			m_currentTotalLost = 0;
 		}
+		
+		if (m_totalGain > m_historyHigh)
+			m_historyHigh = m_totalGain;
+		
+		int diffFromHigh = m_totalGain - m_historyHigh;
+		if (diffFromHigh < m_maxDiffFromHigh)
+			m_maxDiffFromHigh = diffFromHigh;
 	}
 	
 	public double calculateMean()
