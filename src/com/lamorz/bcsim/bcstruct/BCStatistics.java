@@ -23,6 +23,13 @@ public class BCStatistics {
 	private double m_mean;
 	private double m_sd;
 	
+	private int m_targetGain;
+	private double m_meanRoundsToTarget;
+	private double m_sdRoundsToTarget;
+	private double m_sumXsqRoundsToTarget;
+	private int m_roundsNotMeetingTarget;
+	private int m_gainNotMeetingTarget;
+	
 	
 	public BCStatistics() {
 		super();
@@ -38,9 +45,54 @@ public class BCStatistics {
 		m_maxConsecutiveLost = 0;
 		m_mean = 0.0;
 		m_sd = 0.0;
+		m_targetGain = 0;
+		m_meanRoundsToTarget = 0;
+		m_sdRoundsToTarget = 0;
+		m_sumXsqRoundsToTarget = 0;
+		m_roundsNotMeetingTarget = 0;
+		m_gainNotMeetingTarget = 0;
 	}
 	
 	
+	public int getTargetGain() {
+		return m_targetGain;
+	}
+
+
+	public void setTargetGain(int targetGain) {
+		m_targetGain = targetGain;
+	}
+
+
+	public double getMeanRoundsToTarget() {
+		return m_meanRoundsToTarget;
+	}
+
+
+	public void setMeanRoundsToTarget(double meanRoundsToTarget) {
+		m_meanRoundsToTarget = meanRoundsToTarget;
+	}
+
+
+	public double getSdRoundsToTarget() {
+		return m_sdRoundsToTarget;
+	}
+
+
+	public void setSdRoundsToTarget(double sdRoundsToTarget) {
+		m_sdRoundsToTarget = sdRoundsToTarget;
+	}
+
+
+	public int getRoundsNotMeetingTarget() {
+		return m_roundsNotMeetingTarget;
+	}
+
+
+	public void setRoundsNotMeetingTarget(int roundsNotMeetingTarget) {
+		m_roundsNotMeetingTarget = roundsNotMeetingTarget;
+	}
+
 	
 	/**
 	 * @return the maxDiffFromHigh
