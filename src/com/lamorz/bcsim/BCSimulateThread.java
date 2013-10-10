@@ -58,16 +58,18 @@ public class BCSimulateThread extends Thread {
 		for (m_currentPass=0; m_currentPass<m_noOfPasses; m_currentPass++)
 		{
 			stats.putResult(BCManager.getInstance().simulate(m_noOfRounds, m_upperLimit, m_lowerLimit));
-			//try {
-			//	yield();
-			//} catch (Exception e) 
-			//{
-			//	e.printStackTrace();
-			//}
+			try {
+				yield();
+			} catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
 		}
 		
 		stats.calculateMean();
 		stats.calculateStdDev();
+		stats.calculateMeanRoundToTarget();
+		stats.calculateSDRoundToTarget();
 		BCManager.getInstance().setNewestStats(stats);
 		m_isRunning = false;
 		

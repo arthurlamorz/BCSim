@@ -106,7 +106,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		    	{
 		                updateUI();
 		        }
-		    },0,1000);
+		    },0,2000);
 		
 	}	
 	
@@ -132,6 +132,7 @@ public class MainActivity extends Activity implements OnClickListener {
 						String dispStr = String.format("%1$1d\n%2$3d\n%3$3d\n%4$5d\n",stats.getLowest(), stats.getMaxDiffFromHigh(), stats.getMaxTotalLost(), stats.getTotalGain());
 						dispStr = dispStr + String.format("%1.3f\n%1.3f", stats.getMeanRoundsToTarget(), stats.getSdRoundsToTarget());
 						m_textViewMaxTotal.setText(dispStr);
+						BCManager.getInstance().setNewestStats(null);
 					}
 				}
 			}
@@ -173,8 +174,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			int noOfRounds = Integer.parseInt(SP.getString("no_of_rounds_text", "50"));
 			int upperLimit = Integer.parseInt(SP.getString("upper_limit_text", "3"));
 			int lowerLimit = Integer.parseInt(SP.getString("lower_limit_text", "-8"));
-			
-			int haltAmount = -5;
+			int haltAmount = Integer.parseInt(SP.getString("halt_amount_text", "-8"));
 			BCManager.getInstance().setHaltAmount(haltAmount);
 			 
 			BCManager manager = BCManager.getInstance();
@@ -209,6 +209,10 @@ public class MainActivity extends Activity implements OnClickListener {
 			 BCManager manager = BCManager.getInstance();
 			 
 			 manager.reset();
+			 
+			 int haltAmount = Integer.parseInt(SP.getString("halt_amount_text", "-8"));
+			manager.setHaltAmount(haltAmount);
+				
 			 m_currentRound = 0;
 			 m_totalAmount = 0;
 			 m_simThread = new BCSimulateThread(); 
