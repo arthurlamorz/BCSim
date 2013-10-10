@@ -26,6 +26,9 @@ import com.lamorz.bcsim.bcstruct.BCGame;
 import com.lamorz.bcsim.bcstruct.BCRound;
 import com.lamorz.bcsim.bcstruct.BCManager;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -43,6 +46,9 @@ public class MainActivity extends Activity implements OnClickListener {
 	private TextView m_textViewSD;
 	private TextView m_textViewMaxCon;
 	private TextView m_textViewMaxTotal;
+	
+	private BCSimulateThread m_simThread;
+	private Timer m_uiTimer;
 	
 	
 	@Override
@@ -91,8 +97,47 @@ public class MainActivity extends Activity implements OnClickListener {
 		m_totalAmount = 0;
 		m_currentRound = 0;
 		
+		m_simThread = new BCSimulateThread();
+		
+		m_uiTimer = new Timer();
+		m_uiTimer.schedule(new TimerTask()
+			{
+		    	public void run()
+		    	{
+		                updateUI();
+		        }
+		    },0,1000);
+		
 	}	
-
+	
+	public void updateUI()
+	{	
+			runOnUiThread(new Runnable()
+			{
+				public void run()
+				{
+					boolean isSimulating = m_simThread.isRunning();
+					if (isSimulating)
+					{
+						String strSimText = "SIM" + String.format("%1$5d", m_simThread.getCurrentPass());
+						m_textViewMean.setText(strSimText);
+					}
+					BCStatistics stats = BCManager.getInstance().getNewestStats();
+					if (stats != null)
+					{
+						f_tableLayoutResult.removeAllViews();
+						m_textViewMean.setText(String.format("%1.3f", stats.getMean()));
+						m_textViewSD.setText(String.format("%1.3f", stats.getSd()));	
+						m_textViewMaxCon.setText(String.format("%1$1d", +stats.getMaxConsecutiveLost()));
+						m_textViewMaxTotal.setText(String.format("%1$1d\n%2$3d\n%3$3d\n%4$5d", stats.getLowest(), stats.getMaxDiffFromHigh(), stats.getMaxTotalLost(), stats.getTotalGain()));
+					}
+				}
+			}
+			);
+		
+	}
+ 
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -162,10 +207,10 @@ public class MainActivity extends Activity implements OnClickListener {
 			 BCManager manager = BCManager.getInstance();
 			 
 			 manager.reset();
-			 f_tableLayoutResult.removeAllViews();
 			 m_currentRound = 0;
 			 m_totalAmount = 0;
-			 
+			 m_simThread.start();
+			 /*
 			int noOfPasses = Integer.parseInt(SP.getString("no_of_passes_text", "1000"));
 			int noOfRounds = Integer.parseInt(SP.getString("no_of_rounds_text", "50"));
 			int upperLimit = Integer.parseInt(SP.getString("upper_limit_text", "3"));
@@ -175,13 +220,69 @@ public class MainActivity extends Activity implements OnClickListener {
 			BCManager.getInstance().setHaltAmount(haltAmount);
 			 
 			 BCStatistics stats = manager.multipleSimulate(noOfPasses, noOfRounds, upperLimit, lowerLimit);
-			 
-			 
+			 f_tableLayoutResult.removeAllViews();
 				m_textViewMean.setText(String.format("%1.3f", stats.getMean()));
 				m_textViewSD.setText(String.format("%1.3f", stats.getSd()));	
 				m_textViewMaxCon.setText(String.format("%1$1d", +stats.getMaxConsecutiveLost()));
 				m_textViewMaxTotal.setText(String.format("%1$1d\n%2$3d\n%3$3d\n%4$5d", stats.getLowest(), stats.getMaxDiffFromHigh(), stats.getMaxTotalLost(), stats.getTotalGain()));
+				*/
+			 /*
+			 class UIThread implements Runnable {
+				 
+				 //private TableLayout f_tableLayoutResult;
+				 //private TextView m_textViewMean;
+				 //private TextView m_textViewSD;
+				 //private TextView m_textViewMaxCon;
+				 //private TextView m_textViewMaxTotal;
+				 //private BCSimulateThread m_simThread;
+				 
+				 public UIThread(TableLayout tableLayoutResult, TextView textViewMean, TextView textViewSD, TextView textViewMaxCon, TextView textViewMaxTotal, BCSimulateThread simThread)
+				 {
+					 f_tableLayoutResult = tableLayoutResult;
+					 m_textViewMean = textViewMean;
+					 m_textViewSD = textViewSD;
+					 m_textViewMaxCon = textViewMaxCon;
+					 m_textViewMaxTotal = textViewMaxTotal;
+					 m_simThread = simThread;
+				 }
+				 
+				 public void run()
+				 {
+					 int counter = 0;
+					 boolean isSimulating = m_simThread.isRunning();
+					 String strSimText = "";
+					 while (isSimulating)
+					 {
+						 strSimText = "SIM" + String.format("%1$5d", counter);
+						 try {
+						 m_textViewMean.setText(strSimText);
+							 Thread.yield();
+						 }
+						 catch (Exception e)
+						 {
+							 e.printStackTrace();
+						 }
+						 counter++;
+						 isSimulating = m_simThread.isRunning();
+					 }
+					 
+					 BCStatistics stats = BCManager.getInstance().getNewestStats();
+					 f_tableLayoutResult.removeAllViews();
+						m_textViewMean.setText(String.format("%1.3f", stats.getMean()));
+						m_textViewSD.setText(String.format("%1.3f", stats.getSd()));	
+						m_textViewMaxCon.setText(String.format("%1$1d", +stats.getMaxConsecutiveLost()));
+						m_textViewMaxTotal.setText(String.format("%1$1d\n%2$3d\n%3$3d\n%4$5d", stats.getLowest(), stats.getMaxDiffFromHigh(), stats.getMaxTotalLost(), stats.getTotalGain()));
+					 
+				 }
+			 }
 			 
+			 BCSimulateThread simThread = new BCSimulateThread();
+			 
+			 
+			 Thread uiThread = new Thread(new UIThread(f_tableLayoutResult, m_textViewMean, m_textViewSD, m_textViewMaxCon, m_textViewMaxTotal,simThread ));			 
+			 simThread.start();
+			 uiThread.start();
+			 */
 		 }
 	}
 	
