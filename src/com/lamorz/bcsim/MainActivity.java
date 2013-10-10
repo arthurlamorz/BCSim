@@ -119,7 +119,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					boolean isSimulating = m_simThread.isRunning();
 					if (isSimulating)
 					{
-						String strSimText = "SIM" + String.format("%1$5d", m_simThread.getCurrentPass());
+						String strSimText = "SIM" + String.format("%1$7d", m_simThread.getCurrentPass());
 						m_textViewMean.setText(strSimText);
 					}
 					BCStatistics stats = BCManager.getInstance().getNewestStats();
@@ -129,7 +129,9 @@ public class MainActivity extends Activity implements OnClickListener {
 						m_textViewMean.setText(String.format("%1.3f", stats.getMean()));
 						m_textViewSD.setText(String.format("%1.3f", stats.getSd()));	
 						m_textViewMaxCon.setText(String.format("%1$1d", +stats.getMaxConsecutiveLost()));
-						m_textViewMaxTotal.setText(String.format("%1$1d\n%2$3d\n%3$3d\n%4$5d", stats.getLowest(), stats.getMaxDiffFromHigh(), stats.getMaxTotalLost(), stats.getTotalGain()));
+						String dispStr = String.format("%1$1d\n%2$3d\n%3$3d\n%4$5d\n",stats.getLowest(), stats.getMaxDiffFromHigh(), stats.getMaxTotalLost(), stats.getTotalGain());
+						dispStr = dispStr + String.format("%1.3f\n%1.3f", stats.getMeanRoundsToTarget(), stats.getSdRoundsToTarget());
+						m_textViewMaxTotal.setText(dispStr);
 					}
 				}
 			}
@@ -209,80 +211,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			 manager.reset();
 			 m_currentRound = 0;
 			 m_totalAmount = 0;
+			 m_simThread = new BCSimulateThread(); 
 			 m_simThread.start();
-			 /*
-			int noOfPasses = Integer.parseInt(SP.getString("no_of_passes_text", "1000"));
-			int noOfRounds = Integer.parseInt(SP.getString("no_of_rounds_text", "50"));
-			int upperLimit = Integer.parseInt(SP.getString("upper_limit_text", "3"));
-			int lowerLimit = Integer.parseInt(SP.getString("lower_limit_text", "-8"));
-				
-			int haltAmount = -5;
-			BCManager.getInstance().setHaltAmount(haltAmount);
-			 
-			 BCStatistics stats = manager.multipleSimulate(noOfPasses, noOfRounds, upperLimit, lowerLimit);
-			 f_tableLayoutResult.removeAllViews();
-				m_textViewMean.setText(String.format("%1.3f", stats.getMean()));
-				m_textViewSD.setText(String.format("%1.3f", stats.getSd()));	
-				m_textViewMaxCon.setText(String.format("%1$1d", +stats.getMaxConsecutiveLost()));
-				m_textViewMaxTotal.setText(String.format("%1$1d\n%2$3d\n%3$3d\n%4$5d", stats.getLowest(), stats.getMaxDiffFromHigh(), stats.getMaxTotalLost(), stats.getTotalGain()));
-				*/
-			 /*
-			 class UIThread implements Runnable {
-				 
-				 //private TableLayout f_tableLayoutResult;
-				 //private TextView m_textViewMean;
-				 //private TextView m_textViewSD;
-				 //private TextView m_textViewMaxCon;
-				 //private TextView m_textViewMaxTotal;
-				 //private BCSimulateThread m_simThread;
-				 
-				 public UIThread(TableLayout tableLayoutResult, TextView textViewMean, TextView textViewSD, TextView textViewMaxCon, TextView textViewMaxTotal, BCSimulateThread simThread)
-				 {
-					 f_tableLayoutResult = tableLayoutResult;
-					 m_textViewMean = textViewMean;
-					 m_textViewSD = textViewSD;
-					 m_textViewMaxCon = textViewMaxCon;
-					 m_textViewMaxTotal = textViewMaxTotal;
-					 m_simThread = simThread;
-				 }
-				 
-				 public void run()
-				 {
-					 int counter = 0;
-					 boolean isSimulating = m_simThread.isRunning();
-					 String strSimText = "";
-					 while (isSimulating)
-					 {
-						 strSimText = "SIM" + String.format("%1$5d", counter);
-						 try {
-						 m_textViewMean.setText(strSimText);
-							 Thread.yield();
-						 }
-						 catch (Exception e)
-						 {
-							 e.printStackTrace();
-						 }
-						 counter++;
-						 isSimulating = m_simThread.isRunning();
-					 }
-					 
-					 BCStatistics stats = BCManager.getInstance().getNewestStats();
-					 f_tableLayoutResult.removeAllViews();
-						m_textViewMean.setText(String.format("%1.3f", stats.getMean()));
-						m_textViewSD.setText(String.format("%1.3f", stats.getSd()));	
-						m_textViewMaxCon.setText(String.format("%1$1d", +stats.getMaxConsecutiveLost()));
-						m_textViewMaxTotal.setText(String.format("%1$1d\n%2$3d\n%3$3d\n%4$5d", stats.getLowest(), stats.getMaxDiffFromHigh(), stats.getMaxTotalLost(), stats.getTotalGain()));
-					 
-				 }
-			 }
-			 
-			 BCSimulateThread simThread = new BCSimulateThread();
-			 
-			 
-			 Thread uiThread = new Thread(new UIThread(f_tableLayoutResult, m_textViewMean, m_textViewSD, m_textViewMaxCon, m_textViewMaxTotal,simThread ));			 
-			 simThread.start();
-			 uiThread.start();
-			 */
+			
 		 }
 	}
 	
