@@ -26,6 +26,9 @@ import com.lamorz.bcsim.bcstruct.BCGame;
 import com.lamorz.bcsim.bcstruct.BCRound;
 import com.lamorz.bcsim.bcstruct.BCManager;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -43,6 +46,9 @@ public class MainActivity extends Activity implements OnClickListener {
 	private TextView m_textViewSD;
 	private TextView m_textViewMaxCon;
 	private TextView m_textViewMaxTotal;
+	
+	private BCSimulateThread m_simThread;
+	private Timer m_uiTimer;
 	
 	
 	@Override
@@ -91,8 +97,50 @@ public class MainActivity extends Activity implements OnClickListener {
 		m_totalAmount = 0;
 		m_currentRound = 0;
 		
+		m_simThread = new BCSimulateThread();
+		
+		m_uiTimer = new Timer();
+		m_uiTimer.schedule(new TimerTask()
+			{
+		    	public void run()
+		    	{
+		                updateUI();
+		        }
+		    },0,250);
+		
 	}	
-
+	
+	public void updateUI()
+	{	
+			runOnUiThread(new Runnable()
+			{
+				public void run()
+				{
+					boolean isSimulating = m_simThread.isRunning();
+					if (isSimulating)
+					{
+						String strSimText = "SIM" + String.format("%1$7d", m_simThread.getCurrentPass());
+						m_textViewMean.setText(strSimText);
+					}
+					BCStatistics stats = BCManager.getInstance().getNewestStats();
+					if (stats != null)
+					{
+						f_tableLayoutResult.removeAllViews();
+						m_textViewMean.setText(String.format("%1.3f", stats.getMean()));
+						m_textViewSD.setText(String.format("%1.3f", stats.getSd()));	
+						m_textViewMaxCon.setText(String.format("%1$1d", +stats.getMaxConsecutiveLost()));
+						String dispStr = String.format("%1$1d\n%2$3d\n%3$3d\n%4$5d\n",stats.getLowest(), stats.getMaxDiffFromHigh(), stats.getMaxTotalLost(), stats.getTotalGain());
+						dispStr = dispStr + String.format("%1.3f\n%1.3f", stats.getMeanRoundsToTarget(), stats.getSdRoundsToTarget());
+						m_textViewMaxTotal.setText(dispStr);
+						BCManager.getInstance().setNewestStats(null);
+					}
+				}
+			}
+			);
+		
+	}
+ 
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -126,8 +174,8 @@ public class MainActivity extends Activity implements OnClickListener {
 			int noOfRounds = Integer.parseInt(SP.getString("no_of_rounds_text", "50"));
 			int upperLimit = Integer.parseInt(SP.getString("upper_limit_text", "3"));
 			int lowerLimit = Integer.parseInt(SP.getString("lower_limit_text", "-3"));
-			
 			int haltAmount = Integer.parseInt(SP.getString("halt_amount_text", "-3"));
+
 			BCManager.getInstance().setHaltAmount(haltAmount);
 			 
 			BCManager manager = BCManager.getInstance();
@@ -162,28 +210,15 @@ public class MainActivity extends Activity implements OnClickListener {
 			 BCManager manager = BCManager.getInstance();
 			 
 			 manager.reset();
-			 f_tableLayoutResult.removeAllViews();
+			 
+			 int haltAmount = Integer.parseInt(SP.getString("halt_amount_text", "-8"));
+			manager.setHaltAmount(haltAmount);
+				
 			 m_currentRound = 0;
 			 m_totalAmount = 0;
-			 
-			int noOfPasses = Integer.parseInt(SP.getString("no_of_passes_text", "1000"));
-			int noOfRounds = Integer.parseInt(SP.getString("no_of_rounds_text", "50"));
-			int upperLimit = Integer.parseInt(SP.getString("upper_limit_text", "3"));
-			int lowerLimit = Integer.parseInt(SP.getString("lower_limit_text", "-3"));
-				
-			int haltAmount = Integer.parseInt(SP.getString("halt_amount_text", "-3"));
-			BCManager.getInstance().setHaltAmount(haltAmount);
-			 
-			 BCStatistics stats = manager.multipleSimulate(noOfPasses, noOfRounds, upperLimit, lowerLimit);
-			 
-			 
-				m_textViewMean.setText(String.format("%1.3f", stats.getMean()));
-				m_textViewSD.setText(String.format("%1.3f", stats.getSd()));	
-				m_textViewMaxCon.setText(String.format("%1$1d", +stats.getMaxConsecutiveLost()));
-				String dispStr = String.format("%1$1d\n%2$3d\n%3$3d\n%4$5d\n",stats.getLowest(), stats.getMaxDiffFromHigh(), stats.getMaxTotalLost(), stats.getTotalGain());
-				dispStr = dispStr + String.format("%1.3f\n%1.3f", stats.getMeanRoundsToTarget(), stats.getSdRoundsToTarget());
-				m_textViewMaxTotal.setText(dispStr);
-			 
+			 m_simThread = new BCSimulateThread(); 
+			 m_simThread.start();
+			
 		 }
 	}
 	
