@@ -14,6 +14,7 @@ public class BCManager {
 	private int m_totalGain;
 	private int m_noOfWin;
 	private int m_noOfLose;
+	private int m_winRate;
 	
 	private BCStatistics m_newestStats; 
 	
@@ -28,10 +29,25 @@ public class BCManager {
 		m_totalGain = 0;
 		m_noOfWin = 0;
 		m_noOfLose = 0;
+		m_winRate = 4931756;
 		
 		m_newestStats = null;
 	}
 	
+	
+	
+	public int getWinRate() {
+		return m_winRate;
+	}
+
+
+
+	public void setWinRate(int winRate) {
+		m_winRate = winRate;
+	}
+
+
+
 	/**
 	 * @return the newestStats
 	 */
