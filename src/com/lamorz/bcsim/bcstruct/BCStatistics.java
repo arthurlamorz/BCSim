@@ -15,7 +15,7 @@ public class BCStatistics {
 	private int m_maxConsecutiveLost;
 	
 	private int m_totalGain;
-	private int m_sumXSquared;
+	private long m_sumXSquared;
 	
 	private int m_historyHigh;
 	private int m_maxDiffFromHigh;
