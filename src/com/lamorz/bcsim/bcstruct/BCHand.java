@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class BCHand {
 
-	private static final int PLAYER_WIN_RATE = 4931756;
+	private static final int PLAYER_WIN_RATE = 4861111;
 	private static final int MAX_RANDOM_NUMBER = 9999999;
 	
 	private int m_handID;
