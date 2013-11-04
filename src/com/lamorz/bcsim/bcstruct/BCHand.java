@@ -4,15 +4,16 @@ import java.util.Random;
 
 public class BCHand {
 
-	private static final int PLAYER_WIN_RATE = 4931756;
 	private static final int MAX_RANDOM_NUMBER = 9999999;
 	
 	private int m_handID;
 	private boolean m_win;
 	private int m_gain;
+	private int m_winRate;
 	
 	public BCHand() {
 		super();
+		m_winRate = BCManager.getInstance().getWinRate();
 	}
 
 	public void play(int handID, int bet)
@@ -20,7 +21,7 @@ public class BCHand {
 		m_handID = handID;
 		
 		Random ranGen = new Random();
-		m_win = ranGen.nextInt(MAX_RANDOM_NUMBER)<PLAYER_WIN_RATE ? true : false;
+		m_win = ranGen.nextInt(MAX_RANDOM_NUMBER)<m_winRate ? true : false;
 		m_gain = bet;
 		if (!m_win)
 		{

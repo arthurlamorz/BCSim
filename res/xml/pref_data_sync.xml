@@ -16,7 +16,7 @@
     
     <EditTextPreference
         android:defaultValue="@string/pref_default_no_of_passes"
-        android:inputType="textCapWords"
+        android:inputType="number"
         android:key="no_of_passes_text"
         android:maxLines="1"
         android:selectAllOnFocus="true"

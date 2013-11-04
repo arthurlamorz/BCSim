@@ -168,6 +168,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		 
 		SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 		
+		int winRate = Integer.parseInt(SP.getString("win_probability_text", "4931756"));
+		BCManager.getInstance().setWinRate(winRate);
+		
 		 if (view == f_buttonStart)
 		 {
 			boolean isShowDetails = SP.getBoolean("showDetails_checkbox",false);
