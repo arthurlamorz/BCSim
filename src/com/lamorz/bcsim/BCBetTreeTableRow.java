@@ -1,12 +1,14 @@
 package com.lamorz.bcsim;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.EditText;
 import com.lamorz.bcsim.bcstruct.BCBetTreeNode;
 
 import android.graphics.Typeface;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.InputType;
@@ -91,7 +93,12 @@ public class BCBetTreeTableRow extends TableRow implements TextWatcher {
 		InputOddsActivity activity = (InputOddsActivity) this.getContext();
 		BCBetTreeTableRow conjugateRow = activity.getConjugateRow(m_prevResult);
 		
-		if (conjugateRow != null)
+		
+		SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getContext());
+		
+		boolean isSymmetry = SP.getBoolean("showDetails_tree_node_symmetry", true);
+		
+		if (isSymmetry && conjugateRow != null)
 		{
 			String conjugateAmountStr = conjugateRow.getEditAmount().getText().toString();
 			try { 

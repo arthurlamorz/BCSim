@@ -9,6 +9,8 @@
     <string name="pref_header_general">General</string>
     <string name="pref_title_show_details">Enable Show Details of Simulation</string>
     <string name="pref_description_show_details">Show all details of simulation, including, win, lose, gain for each hand</string>
+    <string name="pref_title_tree_node_symmetry">Enable Tree Node Symmetry</string>
+    <string name="pref_description_tree_node_symmetry">Enable Symmetry on Tree Nodes, conjugate nodes will be changed when a node changed</string>
     <string name="pref_title_no_of_rounds">Rounds per Simulation</string>
     <string name="pref_default_no_of_rounds">50</string>
     <string name="pref_title_upper_limit">Upper Limit</string>

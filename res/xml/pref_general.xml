@@ -5,6 +5,12 @@
         android:key="showDetails_checkbox"
         android:summary="@string/pref_description_show_details"
         android:title="@string/pref_title_show_details" />
+    
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="showDetails_tree_node_symmetry"
+        android:summary="@string/pref_description_tree_node_symmetry"
+        android:title="@string/pref_title_tree_node_symmetry" />
 
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->
     <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
