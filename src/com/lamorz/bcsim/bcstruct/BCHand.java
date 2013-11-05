@@ -33,6 +33,25 @@ public class BCHand {
 			
 	}
 	
+	public void play(int handID, int winAmount, int loseAmount)
+	{
+		m_handID = handID;
+		
+		Random ranGen = new Random();
+		m_win = ranGen.nextInt(MAX_RANDOM_NUMBER)<m_winRate ? true : false;
+		if (!m_win)
+		{
+			m_gain = loseAmount;
+			BCManager.getInstance().incrementLose();
+		}
+		else
+		{
+			m_gain = winAmount;
+			BCManager.getInstance().incrementWin();
+		}
+			
+	}
+	
 	//Generated getsetters
 	/**
 	 * @return the handID

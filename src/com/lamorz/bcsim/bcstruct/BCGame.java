@@ -102,7 +102,7 @@ public class BCGame {
 		if (m_isHalted)
 			hand.play(m_currentHand, 0);
 		else
-			hand.play(m_currentHand, m_currentBetTreeNode.getWinNode().getAmount());
+			hand.play(m_currentHand, m_currentBetTreeNode.getWinNode().getAmount(), m_currentBetTreeNode.getLoseNode().getAmount());
 		
 		if(hand.isWin())
 			m_currentBetTreeNode = m_currentBetTreeNode.getWinNode();
