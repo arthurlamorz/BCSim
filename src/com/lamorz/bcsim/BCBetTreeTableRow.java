@@ -154,6 +154,7 @@ public class BCBetTreeTableRow extends TableRow implements TextWatcher {
 		 m_editAmount.setTextAppearance(this.getContext(), m_styleId);
 		 int height = Math.round(m_editAmount.getTextSize());
 		 m_editAmount.setHeight(height*2);
+		 m_editAmount.setWidth(150);
 		 m_editAmount.setGravity(Gravity.BOTTOM);
 		 m_editAmount.setBackgroundColor(0);
 		 m_editAmount.setTypeface(m_typeface);
