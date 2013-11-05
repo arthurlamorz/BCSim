@@ -81,6 +81,9 @@ public class SettingsActivity extends PreferenceActivity {
 		bindPreferenceSummaryToValue(findPreference("upper_limit_text"));
 		bindPreferenceSummaryToValue(findPreference("lower_limit_text"));
 		bindPreferenceSummaryToValue(findPreference("halt_amount_text"));
+		bindPreferenceSummaryToValue(findPreference("no_of_rounds_text"));
+		bindPreferenceSummaryToValue(findPreference("win_probability_text"));
+		bindPreferenceSummaryToValue(findPreference("no_of_passes_text"));
 	}
 
 	/** {@inheritDoc} */
