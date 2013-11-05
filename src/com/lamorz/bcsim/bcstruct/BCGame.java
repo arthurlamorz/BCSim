@@ -66,20 +66,22 @@ public class BCGame {
 
 	public int determineBetLevel(int gain)
 	{
+		BCBetTreeManager betTreeMgr = BCBetTreeManager.getInstance();
+		
 		int betLevel = 0;
-		if (gain >= 30)
+		if (gain >= betTreeMgr.getBetTree(7).getRootNode().getAmount())
 			betLevel = 7;
-		else if (gain >= 25)
+		else if (gain >= betTreeMgr.getBetTree(6).getRootNode().getAmount())
 			betLevel = 6;
-		else if (gain >= 20)
+		else if (gain >= betTreeMgr.getBetTree(5).getRootNode().getAmount())
 			betLevel = 5;
-		else if (gain >= 15)
+		else if (gain >= betTreeMgr.getBetTree(4).getRootNode().getAmount())
 			betLevel = 4;
-		else if (gain >= 12)
+		else if (gain >= betTreeMgr.getBetTree(3).getRootNode().getAmount())
 			betLevel = 3;
-		else if (gain >= 8)
+		else if (gain >= betTreeMgr.getBetTree(2).getRootNode().getAmount())
 			betLevel = 2;
-		else if (gain >= 5)
+		else if (gain >= betTreeMgr.getBetTree(1).getRootNode().getAmount())
 			betLevel = 1;
 		
 		if (gain <= BCManager.getInstance().getHaltAmount())
