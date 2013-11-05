@@ -238,19 +238,19 @@ public class MainActivity extends Activity implements OnClickListener {
 			 for (int i=0; i<BCGame.HANDS_PER_GAME; i++)
 			 {
 				 BCHand hand = game.getHand(i);
-				 displayStr += ("|" + String.format("%1$3d", roundID) + "-" + gameID + "-" + hand.getHandID() + "| " + (hand.isWin()?"W":"L") + "   | " + String.format("%1$3d", hand.getGain()) + "  |\n");
+				 displayStr += ("|" + String.format("%1$3d", roundID) + "-" + gameID + "-" + hand.getHandID() + "| " + (hand.isWin()?"W":"L") + "   | " + String.format("%1$5d", hand.getGain()) + "|\n");
 				 
 			 }
 	 
 			 //Gson gson = new Gson();
 			 //String json = gson.toJson(round);
 			 
-			 displayStr += ("|-------+-----+------|\n|Gain" + String.format("%1$3d", game.getTotalGain()) + "|Amount:" + String.format("%1$5d", game.getPrevGain() + game.getTotalGain()) + "|\n|-------+-----+------|\n");
+			 displayStr += ("|-------+-----+------|\n|G:" + String.format("%1$5d", game.getTotalGain()) + "|Amount:" + String.format("%1$5d", game.getPrevGain() + game.getTotalGain()) + "|\n|-------+-----+------|\n");
 		 }
 		if (round.isReset())
 		{
 			m_totalAmount += round.getTotalGain(); 
-			displayStr += ("|Reset " + String.format("%1$3d", round.getTotalGain()) + " Total " + String.format("%1$3d", m_totalAmount) + " |");
+			displayStr += ("|End " + String.format("%1$5d", round.getTotalGain()) + " T:  " + String.format("%1$6d", m_totalAmount) + "|");
 		}
 		
 		textView.setText(displayStr);
