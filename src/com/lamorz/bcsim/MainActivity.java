@@ -190,7 +190,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			 int oldRound = m_currentRound;
 			 m_currentRound = manager.getCurrentRound();
 			 
-			 m_textViewGain.setText(" "+finalGain);
+			 m_textViewGain.setText(" "+finalGain+"\n"+manager.getDangerCount());
 			 m_textViewWin.setText(" "+manager.getNoOfWin());
 			 m_textViewLose.setText(" "+manager.getNoOfLose());
 			 

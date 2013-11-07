@@ -122,6 +122,15 @@ public class BCGame {
 		while (m_currentHand < HANDS_PER_GAME)
 			m_totalGain += playSingleHand().getGain();
 		
+		boolean isDanger = true;
+		for (int i=0; i<4; i++)
+		{
+			if (m_hands[i].isWin())
+				isDanger = false;
+		}
+		if (isDanger)
+			BCManager.getInstance().incrementDanger();
+		
 		return m_totalGain;
 	}
 

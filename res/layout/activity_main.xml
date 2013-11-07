@@ -111,11 +111,11 @@
         android:layout_alignRight="@+id/TextViewLoseMain"
         android:layout_below="@+id/TextViewLoseMain"
         android:layout_marginTop="20dp"
-        android:textColor="#ff0"
         android:background="#000"
-        android:height="20sp"
-        android:textSize="20sp" 
-        android:text="GAIN" />
+        android:height="40dp"
+        android:text="GAIN"
+        android:textColor="#ff0"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/ButtonSim"

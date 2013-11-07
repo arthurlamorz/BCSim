@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Random;
 
 public class BCManager {
 
@@ -15,6 +16,8 @@ public class BCManager {
 	private int m_noOfWin;
 	private int m_noOfLose;
 	private int m_winRate;
+	private int m_dangerCount;
+	private Random m_ranGen;
 	
 	private BCStatistics m_newestStats; 
 	
@@ -30,12 +33,22 @@ public class BCManager {
 		m_noOfWin = 0;
 		m_noOfLose = 0;
 		m_winRate = 4931756;
-		
+		m_dangerCount = 0;
+		m_ranGen = new Random();
+		for (int i=0; i<10000; i++)
+			m_ranGen.nextInt(10);
 		m_newestStats = null;
 	}
 	
 	
-	
+	/**
+	 * @return the ranGen
+	 */
+	public Random getRanGen() {
+		return m_ranGen;
+	}
+
+
 	public int getWinRate() {
 		return m_winRate;
 	}
@@ -133,6 +146,14 @@ public class BCManager {
 		m_haltAmount = haltAmount;
 	}
 
+	/**
+	 * @return the dangerCount
+	 */
+	public int getDangerCount() {
+		return m_dangerCount;
+	}
+
+
 	public static synchronized BCManager getInstance(){
 		if (m_instance == null)
 			m_instance = new BCManager();
@@ -146,6 +167,8 @@ public class BCManager {
 		m_totalGain = 0;
 		m_noOfWin = 0;
 		m_noOfLose = 0;
+		m_dangerCount = 0;
+		//m_ranGen = new Random();
 	}
 	
 	public int simulate(int noOfRounds, int upperLimit, int lowerLimit)
@@ -190,4 +213,6 @@ public class BCManager {
 	
 	public void incrementWin() { m_noOfWin ++; }
 	public void incrementLose() { m_noOfLose ++; }
+	
+	public void incrementDanger() { m_dangerCount ++; }
 }

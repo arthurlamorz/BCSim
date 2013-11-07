@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class BCHand {
 
-	private static final int MAX_RANDOM_NUMBER = 9999999;
+	private static final int MAX_RANDOM_NUMBER = 1000;
 	
 	private int m_handID;
 	private boolean m_win;
@@ -19,9 +19,15 @@ public class BCHand {
 	public void play(int handID, int bet)
 	{
 		m_handID = handID;
+			
 		
-		Random ranGen = new Random();
-		m_win = ranGen.nextInt(MAX_RANDOM_NUMBER)<m_winRate ? true : false;
+		Random ranGen = BCManager.getInstance().getRanGen();
+		int ranOut = ranGen.nextInt(MAX_RANDOM_NUMBER);
+		m_win = ranOut<m_winRate ? true : false;
+		//boolean needRev = ranGen.nextInt(1) == 1 ? true : false;
+		//if (needRev) m_win = !m_win;
+			
+		
 		m_gain = bet;
 		if (!m_win)
 		{
