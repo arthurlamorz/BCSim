@@ -25,7 +25,7 @@
     
     <EditTextPreference
         android:defaultValue="@string/pref_default_win_probability"
-        android:inputType="number"
+        android:inputType="textCapWords"
         android:key="win_probability_text"
         android:maxLines="1"
         android:selectAllOnFocus="true"

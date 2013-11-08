@@ -168,7 +168,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		 
 		SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 		
-		int winRate = Integer.parseInt(SP.getString("win_probability_text", "4931756"));
+		double winRate = Double.parseDouble(SP.getString("win_probability_text", "0.4931756"));
 		BCManager.getInstance().setWinRate(winRate);
 		
 		 if (view == f_buttonStart)
@@ -190,7 +190,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			 int oldRound = m_currentRound;
 			 m_currentRound = manager.getCurrentRound();
 			 
-			 m_textViewGain.setText(" "+finalGain+"\n"+manager.getDangerCount());
+			 m_textViewGain.setText(" "+finalGain+"\n "+manager.getDangerCount());
 			 m_textViewWin.setText(" "+manager.getNoOfWin());
 			 m_textViewLose.setText(" "+manager.getNoOfLose());
 			 

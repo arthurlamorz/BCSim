@@ -15,7 +15,7 @@ public class BCManager {
 	private int m_totalGain;
 	private int m_noOfWin;
 	private int m_noOfLose;
-	private int m_winRate;
+	private double m_winRate;
 	private int m_dangerCount;
 	private Random m_ranGen;
 	
@@ -32,7 +32,7 @@ public class BCManager {
 		m_totalGain = 0;
 		m_noOfWin = 0;
 		m_noOfLose = 0;
-		m_winRate = 4931756;
+		m_winRate = 0.4931756;
 		m_dangerCount = 0;
 		m_ranGen = new Random();
 		for (int i=0; i<10000; i++)
@@ -49,13 +49,13 @@ public class BCManager {
 	}
 
 
-	public int getWinRate() {
+	public double getWinRate() {
 		return m_winRate;
 	}
 
 
 
-	public void setWinRate(int winRate) {
+	public void setWinRate(double winRate) {
 		m_winRate = winRate;
 	}
 

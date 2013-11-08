@@ -9,7 +9,7 @@ public class BCHand {
 	private int m_handID;
 	private boolean m_win;
 	private int m_gain;
-	private int m_winRate;
+	private double m_winRate;
 	
 	public BCHand() {
 		super();
@@ -22,8 +22,8 @@ public class BCHand {
 			
 		
 		Random ranGen = BCManager.getInstance().getRanGen();
-		int ranOut = ranGen.nextInt(MAX_RANDOM_NUMBER);
-		m_win = ranOut<m_winRate ? true : false;
+		double ranOut = ranGen.nextDouble();
+		m_win = ranOut < m_winRate ? true : false;
 		//boolean needRev = ranGen.nextInt(1) == 1 ? true : false;
 		//if (needRev) m_win = !m_win;
 			
@@ -43,8 +43,10 @@ public class BCHand {
 	{
 		m_handID = handID;
 		
-		Random ranGen = new Random();
-		m_win = ranGen.nextInt(MAX_RANDOM_NUMBER)<m_winRate ? true : false;
+		Random ranGen = BCManager.getInstance().getRanGen();
+		double ranOut = ranGen.nextDouble();
+		m_win = ranOut < m_winRate ? true : false;
+		
 		if (!m_win)
 		{
 			m_gain = loseAmount;
