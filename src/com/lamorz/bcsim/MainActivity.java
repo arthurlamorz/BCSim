@@ -178,8 +178,10 @@ public class MainActivity extends Activity implements OnClickListener {
 			int upperLimit = Integer.parseInt(SP.getString("upper_limit_text", "3"));
 			int lowerLimit = Integer.parseInt(SP.getString("lower_limit_text", "-3"));
 			int haltAmount = Integer.parseInt(SP.getString("halt_amount_text", "-3"));
+			int upperHaltAmount = Integer.parseInt(SP.getString("upper_halt_amount_text", "3"));
 
 			BCManager.getInstance().setHaltAmount(haltAmount);
+			BCManager.getInstance().setUpperHaltAmount(upperHaltAmount);
 			 
 			BCManager manager = BCManager.getInstance();
 			 manager.reset();
@@ -215,7 +217,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			 manager.reset();
 			 
 			 int haltAmount = Integer.parseInt(SP.getString("halt_amount_text", "-8"));
+			 int upperHaltAmount = Integer.parseInt(SP.getString("upper_halt_amount_text", "-8"));
 			manager.setHaltAmount(haltAmount);
+			manager.setUpperHaltAmount(upperHaltAmount);
 				
 			 m_currentRound = 0;
 			 m_totalAmount = 0;

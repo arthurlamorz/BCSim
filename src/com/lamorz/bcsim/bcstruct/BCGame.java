@@ -86,6 +86,8 @@ public class BCGame {
 		
 		if (gain <= BCManager.getInstance().getHaltAmount())
 			m_isHalted = true;
+		else if (gain >= BCManager.getInstance().getUpperHaltAmount())
+			m_isHalted = true;
 		else
 			m_isHalted = false;
 		

@@ -12,6 +12,7 @@ public class BCManager {
 	private int m_currentRound;
 	private int m_initialAmount;
 	private int m_haltAmount;
+	private int m_upperHaltAmount;
 	private int m_totalGain;
 	private int m_noOfWin;
 	private int m_noOfLose;
@@ -29,6 +30,7 @@ public class BCManager {
 		m_currentRound = 0;
 		m_initialAmount = 0;
 		m_haltAmount = 0;
+		m_upperHaltAmount = 0;
 		m_totalGain = 0;
 		m_noOfWin = 0;
 		m_noOfLose = 0;
@@ -145,6 +147,22 @@ public class BCManager {
 	public void setHaltAmount(int haltAmount) {
 		m_haltAmount = haltAmount;
 	}
+
+	/**
+	 * @return the upperHaltAmount
+	 */
+	public int getUpperHaltAmount() {
+		return m_upperHaltAmount;
+	}
+
+
+	/**
+	 * @param upperHaltAmount the upperHaltAmount to set
+	 */
+	public void setUpperHaltAmount(int upperHaltAmount) {
+		m_upperHaltAmount = upperHaltAmount;
+	}
+
 
 	/**
 	 * @return the dangerCount

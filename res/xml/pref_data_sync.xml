@@ -15,6 +15,15 @@
         android:title="@string/pref_title_halt_amount" />
     
     <EditTextPreference
+        android:defaultValue="@string/pref_default_upper_halt_amount"
+        android:inputType="textCapWords"
+        android:key="upper_halt_amount_text"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_upper_halt_amount" />
+    
+    <EditTextPreference
         android:defaultValue="@string/pref_default_no_of_passes"
         android:inputType="number"
         android:key="no_of_passes_text"
